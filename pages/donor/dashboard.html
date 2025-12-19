@@ -1,0 +1,176 @@
+<!-- frontend/pages/donor/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard - Distributed Blood Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">
+            <div class="navbar-logo">🩸</div>
+            <span>Distributed Blood Management</span>
+        </a>
+        
+        <div class="navbar-right">
+            <div class="notification-icon" id="notificationIcon">
+                <span>🔔</span>
+                <span class="notification-badge" id="notificationBadge">3</span>
+            </div>
+            
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar" id="userAvatar">JD</div>
+                <span id="userName">John Doe</span>
+            </div>
+            
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="profile.html" class="dropdown-item">My Profile</a>
+                <a href="../notifications.html" class="dropdown-item">Notifications</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="profile.html" class="sidebar-link">
+                    <span class="sidebar-icon">👤</span>
+                    <span>My Profile</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="appointments.html" class="sidebar-link">
+                    <span class="sidebar-icon">📅</span>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="../notifications.html" class="sidebar-link">
+                    <span class="sidebar-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Donor Dashboard</h1>
+            
+            <!-- Summary Cards -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-title">Blood Group</div>
+                    <div class="summary-card-value" id="bloodGroup">A+</div>
+                    <div class="summary-card-subtext">Your registered blood type</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Last Donation</div>
+                    <div class="summary-card-value" id="lastDonation">15 Dec 2023</div>
+                    <div class="summary-card-subtext">Your most recent donation</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Next Eligible</div>
+                    <div class="summary-card-value" id="nextEligible">15 Mar 2024</div>
+                    <div class="summary-card-subtext">Earliest date for next donation</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Total Donations</div>
+                    <div class="summary-card-value" id="totalDonations">8</div>
+                    <div class="summary-card-subtext">Lifetime donations made</div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Upcoming Appointments</h2>
+                    <button class="btn btn-primary" onclick="window.location.href='appointments.html'">
+                        Schedule New
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="appointmentsTable">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Blood Bank</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Appointments will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Donations -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Donations</h2>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="donationsTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Blood Bank</th>
+                                <th>Units</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Donations will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Emergency Requests (Nearby) -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Emergency Blood Requests (Your Blood Group)</h2>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="emergencyRequestsTable">
+                        <thead>
+                            <tr>
+                                <th>Hospital</th>
+                                <th>Units Required</th>
+                                <th>Distance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Emergency requests will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/donor/dashboard.js"></script>
+</body>
+</html>
