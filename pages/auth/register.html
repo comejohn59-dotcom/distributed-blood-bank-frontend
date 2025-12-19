@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Distributed Blood Management System</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <div class="auth-logo-icon">🩸</div>
+                    <div class="auth-logo-text">DBMS</div>
+                </div>
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Register for the Blood Management System</p>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    <div class="form-error" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    <div class="form-error" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Create a password (min. 6 characters)" required>
+                    <div class="form-error" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    <div class="form-error" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role" class="form-label">Register As</label>
+                    <select id="role" class="form-control" required onchange="showRoleSpecificFields()">
+                        <option value="">Select Role</option>
+                        <option value="donor">Donor</option>
+                        <option value="hospital">Hospital/Patient</option>
+                        <option value="blood_bank">Blood Bank Organization</option>
+                    </select>
+                    <div class="form-error" id="roleError"></div>
+                </div>
+
+                <!-- Donor Specific Fields -->
+                <div id="donorFields" class="role-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="bloodGroup" class="form-label">Blood Group</label>
+                        <select id="bloodGroup" class="form-control">
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                        <div class="form-error" id="bloodGroupError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select id="gender" class="form-control">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="form-error" id="genderError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" class="form-control" required>
+                        <div class="form-error" id="dateOfBirthError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" id="location" class="form-control" placeholder="Enter your location" required>
+                        <div class="form-error" id="locationError"></div>
+                    </div>
+                </div>
+
+                <!-- Hospital Specific Fields -->
+                <div id="hospitalFields" class="role-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="hospitalName" class="form-label">Hospital/Organization Name</label>
+                        <input type="text" id="hospitalName" class="form-control" placeholder="Enter hospital name">
+                        <div class="form-error" id="hospitalNameError"></div>
+                    </div>
+                </div>
+
+                <!-- Blood Bank Specific Fields -->
+                <div id="bloodBankFields" class="role-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="bankName" class="form-label">Blood Bank Name</label>
+                        <input type="text" id="bankName" class="form-control" placeholder="Enter blood bank name">
+                        <div class="form-error" id="bankNameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea id="address" class="form-control" placeholder="Enter blood bank address" rows="2"></textarea>
+                        <div class="form-error" id="addressError"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" id="registerBtn">
+                    <span>Create Account</span>
+                    <span class="loading-spinner" id="registerSpinner" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p class="text-muted">Already have an account? 
+                    <a href="login.html" class="auth-link">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../js/auth/register.js"></script>
+</body>
+</html>
