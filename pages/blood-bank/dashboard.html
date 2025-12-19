@@ -1,0 +1,185 @@
+<!-- frontend/pages/blood-bank/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Dashboard - Distributed Blood Management System</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">
+            <div class="navbar-logo">🩸</div>
+            <span>Distributed Blood Management</span>
+        </a>
+        
+        <div class="navbar-right">
+            <div class="notification-icon" id="notificationIcon">
+                <span>🔔</span>
+                <span class="notification-badge" id="notificationBadge">5</span>
+            </div>
+            
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar" id="userAvatar">BB</div>
+                <span id="userName">City Blood Bank</span>
+            </div>
+            
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="inventory.html" class="dropdown-item">Manage Inventory</a>
+                <a href="requests.html" class="dropdown-item">Blood Requests</a>
+                <a href="../notifications.html" class="dropdown-item">Notifications</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="dashboard.html" class="sidebar-link active">
+                    <span class="sidebar-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="inventory.html" class="sidebar-link">
+                    <span class="sidebar-icon">📦</span>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="requests.html" class="sidebar-link">
+                    <span class="sidebar-icon">📋</span>
+                    <span>Requests</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="../notifications.html" class="sidebar-link">
+                    <span class="sidebar-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Blood Bank Operations Dashboard</h1>
+            
+            <!-- Summary Cards -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-title">Total Blood Units</div>
+                    <div class="summary-card-value" id="totalUnits">1,247</div>
+                    <div class="summary-card-subtext">Across all blood groups</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Low Stock Alerts</div>
+                    <div class="summary-card-value" id="lowStockAlerts">3</div>
+                    <div class="summary-card-subtext">Blood groups needing attention</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Expiring Soon</div>
+                    <div class="summary-card-value" id="expiringSoon">42</div>
+                    <div class="summary-card-subtext">Units expiring in 7 days</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-title">Pending Requests</div>
+                    <div class="summary-card-value" id="pendingRequests">8</div>
+                    <div class="summary-card-subtext">Awaiting approval</div>
+                </div>
+            </div>
+
+            <!-- Inventory Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Blood Inventory Overview</h2>
+                    <button class="btn btn-primary" onclick="window.location.href='inventory.html'">
+                        Manage Inventory
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="inventoryTable">
+                        <thead>
+                            <tr>
+                                <th>Blood Group</th>
+                                <th>Available Units</th>
+                                <th>Low Stock Level</th>
+                                <th>Expiring Soon</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Inventory data will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Requests -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Blood Requests</h2>
+                    <button class="btn btn-primary" onclick="window.location.href='requests.html'">
+                        View All Requests
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="requestsTable">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Hospital</th>
+                                <th>Blood Group</th>
+                                <th>Units</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Requests will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Upcoming Donations -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Upcoming Donations</h2>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table" id="donationsTable">
+                        <thead>
+                            <tr>
+                                <th>Donor Name</th>
+                                <th>Blood Group</th>
+                                <th>Appointment Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Donations will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/blood-bank/dashboard.js"></script>
+</body>
+</html>
