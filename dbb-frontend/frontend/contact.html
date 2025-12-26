@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BloodConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="become-donor.html" class="nav-link">Become a Donor</a>
+                <a href="request-blood.html" class="nav-link">Request Blood</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-trigger">
+                        Register <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="auth/register-donor.html" class="dropdown-item">
+                            <i class="fas fa-heart"></i> Register as Donor
+                        </a>
+                        <a href="auth/register-patient.html" class="dropdown-item">
+                            <i class="fas fa-user-injured"></i> Register as Patient
+                        </a>
+                        <a href="auth/register-hospital.html" class="dropdown-item">
+                            <i class="fas fa-hospital"></i> Register as Hospital
+                        </a>
+                    </div>
+                </div>
+                <a href="auth/login.html" class="nav-link">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Ultra Compact -->
+    <section class="hero-compact">
+        <div class="container">
+            <div class="hero-horizontal">
+                <div class="hero-text">
+                    <h1>Contact Us</h1>
+                    <p>We're here to help you save lives. Get support, ask questions, or partner with us.</p>
+                    <div class="hero-actions-inline">
+                        <a href="tel:1-800-BLOOD-911" class="btn btn-emergency">
+                            <i class="fas fa-phone"></i> Emergency
+                        </a>
+                        <a href="mailto:info@bloodconnect.org" class="btn btn-outline-light">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-stats-inline">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5min</div>
+                        <div class="stat-label">Response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Helpful</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info & Form - Ultra Compact Side by Side -->
+    <section class="main-content-horizontal">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Contact Information -->
+                <div class="content-section">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-methods-compact">
+                        <div class="contact-method-mini">
+                            <div class="contact-icon-mini">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details-mini">
+                                <h4>Visit</h4>
+                                <p>123 Healthcare Ave<br>New York, NY 10001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method-mini">
+                            <div class="contact-icon-mini">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details-mini">
+                                <h4>Call</h4>
+                                <p>General: (555) 123-4567<br>Emergency: 1-800-BLOOD-911</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method-mini">
+                            <div class="contact-icon-mini">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details-mini">
+                                <h4>Email</h4>
+                                <p>info@bloodconnect.org<br>support@bloodconnect.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method-mini">
+                            <div class="contact-icon-mini">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details-mini">
+                                <h4>Hours</h4>
+                                <p>Mon-Fri: 8AM-6PM<br>Emergency: 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="content-section">
+                    <h2>Send Message</h2>
+                    <form class="contact-form-compact" id="contactForm">
+                        <div class="form-row-compact">
+                            <div class="form-group-compact">
+                                <input type="text" id="firstName" name="firstName" class="form-control-compact" placeholder="First Name *" required>
+                            </div>
+                            <div class="form-group-compact">
+                                <input type="text" id="lastName" name="lastName" class="form-control-compact" placeholder="Last Name *" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row-compact">
+                            <div class="form-group-compact">
+                                <input type="email" id="email" name="email" class="form-control-compact" placeholder="Email Address *" required>
+                            </div>
+                            <div class="form-group-compact">
+                                <input type="tel" id="phone" name="phone" class="form-control-compact" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-compact">
+                            <select id="subject" name="subject" class="form-control-compact" required>
+                                <option value="">Select Subject *</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="donor-support">Donor Support</option>
+                                <option value="hospital-partnership">Hospital Partnership</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group-compact">
+                            <textarea id="message" name="message" class="form-control-compact" rows="4" placeholder="Your message..." required></textarea>
+                        </div>
+                        
+                        <div class="form-actions-compact">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Support - Ultra Compact Side by Side -->
+    <section class="faq-support-horizontal">
+        <div class="container">
+            <div class="content-grid">
+                <!-- FAQ -->
+                <div class="content-section">
+                    <h2>FAQ</h2>
+                    <div class="faq-content-compact">
+                        <div class="faq-item-mini">
+                            <div class="faq-question-mini">
+                                <h4>How to register as donor?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer-mini">
+                                <p>Click "Become a Donor", fill the form, complete health questionnaire.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item-mini">
+                            <div class="faq-question-mini">
+                                <h4>How often can I donate?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer-mini">
+                                <p>Every 56 days (8 weeks) for whole blood. System tracks eligibility automatically.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item-mini">
+                            <div class="faq-question-mini">
+                                <h4>Is my data secure?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer-mini">
+                                <p>Yes, encrypted storage, HIPAA compliant, never shared without consent.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item-mini">
+                            <div class="faq-question-mini">
+                                <h4>Emergency requests?</h4>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer-mini">
+                                <p>Instant notifications to eligible donors via SMS, email, push notifications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support -->
+                <div class="content-section">
+                    <h2>Support</h2>
+                    <div class="support-content-compact">
+                        <div class="support-item-mini">
+                            <div class="support-icon-mini">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="support-info-mini">
+                                <h4>24/7 Support</h4>
+                                <p>Available around the clock for emergencies</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item-mini">
+                            <div class="support-icon-mini">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="support-info-mini">
+                                <h4>Mobile App</h4>
+                                <p>Easy scheduling and notifications</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item-mini">
+                            <div class="support-icon-mini">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="support-info-mini">
+                                <h4>Community</h4>
+                                <p>Connect with other life-savers</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-placeholder-mini">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Find donation centers near you</p>
+                        <button class="btn btn-primary btn-mini">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-tint"></i>
+                        <span>BloodConnect</span>
+                    </div>
+                    <p>Connecting lives through the gift of blood donation. Every drop counts, every donor matters.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="become-donor.html">Become a Donor</a></li>
+                        <li><a href="request-blood.html">Request Blood</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <div class="emergency-contact">
+                        <p><i class="fas fa-phone"></i> 1-800-BLOOD-911</p>
+                        <p><i class="fas fa-envelope"></i> emergency@bloodconnect.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BloodConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Donor - BloodConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="nav-dropdown">
+                    <a href="become-donor.html" class="nav-link active dropdown-trigger">
+                        Become a Donor <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#eligibility" class="dropdown-item">
+                            <i class="fas fa-check-circle"></i> Am I Eligible?
+                        </a>
+                        <a href="#requirements" class="dropdown-item">
+                            <i class="fas fa-list-check"></i> Requirements
+                        </a>
+                        <a href="#process" class="dropdown-item">
+                            <i class="fas fa-route"></i> Donation Process
+                        </a>
+                        <a href="#preparation" class="dropdown-item">
+                            <i class="fas fa-clipboard-list"></i> How to Prepare
+                        </a>
+                        <a href="#benefits" class="dropdown-item">
+                            <i class="fas fa-heart"></i> Benefits
+                        </a>
+                        <a href="#myths" class="dropdown-item">
+                            <i class="fas fa-question-circle"></i> Common Myths
+                        </a>
+                        <a href="#testimonials" class="dropdown-item">
+                            <i class="fas fa-quote-left"></i> What Donors Say
+                        </a>
+                    </div>
+                </div>
+                <a href="request-blood.html" class="nav-link">Request Blood</a>
+                <a href="auth/login.html" class="nav-link">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Ultra Compact -->
+    <section class="hero-compact">
+        <div class="container">
+            <div class="hero-horizontal">
+                <div class="hero-text">
+                    <h1>Become a Life Saver</h1>
+                    <p>Join thousands of heroes who donate blood and save lives every day. Your donation matters.</p>
+                    <div class="hero-actions-inline">
+                        <a href="auth/register.html" class="btn btn-primary">
+                            <i class="fas fa-heart"></i> Start Saving Lives
+                        </a>
+                        <button class="btn btn-outline-light" onclick="scrollToSection('eligibility')">
+                            <i class="fas fa-check-circle"></i> Check Eligibility
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-stats-inline">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Lives Saved</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Hour Needed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">56</div>
+                        <div class="stat-label">Days Between</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1: Am I Eligible to Donate? -->
+    <section class="main-content-horizontal" id="eligibility">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Eligibility Checker -->
+                <div class="content-section">
+                    <h2><i class="fas fa-check-circle"></i> Am I Eligible to Donate?</h2>
+                    <form class="eligibility-form-compact" id="eligibilityForm">
+                        <div class="form-group-inline">
+                            <label>Age:</label>
+                            <div class="radio-group-horizontal">
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="age" value="under-17">
+                                    <span>Under 17</span>
+                                </label>
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="age" value="17-65">
+                                    <span>17-65</span>
+                                </label>
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="age" value="over-65">
+                                    <span>Over 65</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group-inline">
+                            <label>Weight:</label>
+                            <div class="radio-group-horizontal">
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="weight" value="under-50">
+                                    <span>Under 50kg</span>
+                                </label>
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="weight" value="over-50">
+                                    <span>Over 50kg</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group-inline">
+                            <label>Health:</label>
+                            <div class="radio-group-horizontal">
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="health" value="good">
+                                    <span>Good Health</span>
+                                </label>
+                                <label class="radio-item-compact">
+                                    <input type="radio" name="health" value="issues">
+                                    <span>Health Issues</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-block" onclick="checkEligibility()">
+                            <i class="fas fa-check-circle"></i> Check My Eligibility
+                        </button>
+                    </form>
+
+                    <div class="eligibility-result" id="eligibilityResult" style="display: none;">
+                        <!-- Result will be shown here -->
+                    </div>
+                </div>
+
+                <!-- Quick Impact Stats -->
+                <div class="content-section">
+                    <h2><i class="fas fa-chart-line"></i> Your Impact</h2>
+                    <div class="impact-grid-compact">
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="impact-content">
+                                <div class="impact-number">3</div>
+                                <div class="impact-label">Lives Saved</div>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="impact-content">
+                                <div class="impact-number">1</div>
+                                <div class="impact-label">Hour Needed</div>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="impact-content">
+                                <div class="impact-number">470</div>
+                                <div class="impact-label">ML Donated</div>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="impact-content">
+                                <div class="impact-number">56</div>
+                                <div class="impact-label">Days Between</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: General Requirements -->
+    <section class="requirements-section" id="requirements">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-section">
+                    <h2><i class="fas fa-list-check"></i> General Requirements</h2>
+                    <div class="requirements-grid-compact">
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>Age</h4>
+                                <p>17-65 years old</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-weight"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>Weight</h4>
+                                <p>At least 50kg</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>Health</h4>
+                                <p>Good general health</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>Frequency</h4>
+                                <p>Wait 56 days between donations</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>ID Required</h4>
+                                <p>Valid photo identification</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item-mini">
+                            <div class="requirement-icon-mini">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="requirement-content-mini">
+                                <h4>Screening</h4>
+                                <p>Pass health screening</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Important Notes</h2>
+                    <div class="notes-list-compact">
+                        <div class="note-item">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Bring a valid photo ID (driver's license, passport, etc.)</p>
+                        </div>
+                        <div class="note-item">
+                            <i class="fas fa-pills"></i>
+                            <p>List all medications you're currently taking</p>
+                        </div>
+                        <div class="note-item">
+                            <i class="fas fa-ban"></i>
+                            <p>Avoid alcohol 24 hours before donation</p>
+                        </div>
+                        <div class="note-item">
+                            <i class="fas fa-utensils"></i>
+                            <p>Eat a healthy meal before donating</p>
+                        </div>
+                        <div class="note-item">
+                            <i class="fas fa-tint"></i>
+                            <p>Drink plenty of water before and after</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Donation Process -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <h2 class="text-center"><i class="fas fa-route"></i> Donation Process</h2>
+            <div class="steps-horizontal">
+                <div class="step-item">
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Registration</h3>
+                        <p>Complete forms and health questionnaire</p>
+                        <span class="step-time">5-10 min</span>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Health Screening</h3>
+                        <p>Mini-physical and blood test</p>
+                        <span class="step-time">10-15 min</span>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Donation</h3>
+                        <p>Blood collection process</p>
+                        <span class="step-time">8-12 min</span>
+                    </div>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Recovery</h3>
+                        <p>Rest and refreshments</p>
+                        <span class="step-time">10-15 min</span>
+                    </div>
+                </div>
+            </div>
+            <div class="process-summary">
+                <div class="summary-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Total Time: About 1 Hour</span>
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-tint"></i>
+                    <span>Actual Donation: 8-12 Minutes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: How to Prepare for Donation -->
+    <section class="preparation-section" id="preparation">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-section">
+                    <h2><i class="fas fa-clipboard-list"></i> How to Prepare for Donation</h2>
+                    <div class="preparation-timeline-compact">
+                        <div class="prep-phase-mini">
+                            <div class="prep-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="prep-content">
+                                <h4>24 Hours Before</h4>
+                                <ul class="prep-list">
+                                    <li>Get 7-8 hours of sleep</li>
+                                    <li>Eat iron-rich foods</li>
+                                    <li>Stay hydrated</li>
+                                    <li>Avoid alcohol</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="prep-phase-mini">
+                            <div class="prep-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="prep-content">
+                                <h4>Day of Donation</h4>
+                                <ul class="prep-list">
+                                    <li>Eat healthy meal</li>
+                                    <li>Drink extra water</li>
+                                    <li>Bring valid ID</li>
+                                    <li>Wear comfortable clothes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="prep-phase-mini">
+                            <div class="prep-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="prep-content">
+                                <h4>After Donation</h4>
+                                <ul class="prep-list">
+                                    <li>Rest 10-15 minutes</li>
+                                    <li>Drink plenty of fluids</li>
+                                    <li>Avoid heavy lifting</li>
+                                    <li>Keep bandage on 4-5 hours</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2><i class="fas fa-lightbulb"></i> Preparation Tips</h2>
+                    <div class="tips-grid-compact">
+                        <div class="tip-card-mini">
+                            <div class="tip-icon-mini">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="tip-content-mini">
+                                <h4>Eat Well</h4>
+                                <p>Good meal before donating. Avoid fatty foods.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card-mini">
+                            <div class="tip-icon-mini">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="tip-content-mini">
+                                <h4>Stay Hydrated</h4>
+                                <p>Drink water before and after donation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card-mini">
+                            <div class="tip-icon-mini">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="tip-content-mini">
+                                <h4>Get Rest</h4>
+                                <p>Good sleep ensures best condition.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-card-mini">
+                            <div class="tip-icon-mini">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <div class="tip-content-mini">
+                                <h4>Know Medications</h4>
+                                <p>List all current medications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Benefits of Being a Blood Donor -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <h2 class="text-center"><i class="fas fa-heart"></i> Benefits of Being a Blood Donor</h2>
+            <div class="benefits-grid-compact">
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Save Lives</h4>
+                        <p>One donation saves up to 3 lives</p>
+                    </div>
+                </div>
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Free Health Check</h4>
+                        <p>Mini-physical and blood screening</p>
+                    </div>
+                </div>
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-burn"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Burn Calories</h4>
+                        <p>Burns approximately 650 calories</p>
+                    </div>
+                </div>
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Blood Production</h4>
+                        <p>Stimulates new blood cell creation</p>
+                    </div>
+                </div>
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Feel Good</h4>
+                        <p>Psychological benefits of helping</p>
+                    </div>
+                </div>
+                <div class="benefit-card-mini">
+                    <div class="benefit-icon-mini">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="benefit-content-mini">
+                        <h4>Join Community</h4>
+                        <p>Connect with life-savers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Common Myths About Blood Donation -->
+    <section class="myths-section" id="myths">
+        <div class="container">
+            <h2 class="text-center"><i class="fas fa-question-circle"></i> Common Myths About Blood Donation</h2>
+            <div class="myths-grid-compact">
+                <div class="myth-card-mini">
+                    <div class="myth-icon-mini">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="myth-content-mini">
+                        <h4>Myth: It's Painful</h4>
+                        <p><strong>Fact:</strong> Brief pinch, then painless</p>
+                    </div>
+                </div>
+                <div class="myth-card-mini">
+                    <div class="myth-icon-mini">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="myth-content-mini">
+                        <h4>Myth: Makes You Weak</h4>
+                        <p><strong>Fact:</strong> Body quickly replaces blood</p>
+                    </div>
+                </div>
+                <div class="myth-card-mini">
+                    <div class="myth-icon-mini">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="myth-content-mini">
+                        <h4>Myth: You Can Get Sick</h4>
+                        <p><strong>Fact:</strong> Sterile equipment, no infection risk</p>
+                    </div>
+                </div>
+                <div class="myth-card-mini">
+                    <div class="myth-icon-mini">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="myth-content-mini">
+                        <h4>Myth: Takes Too Long</h4>
+                        <p><strong>Fact:</strong> 8-12 min donation, 1 hour total</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: What Our Donors Say -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <h2 class="text-center"><i class="fas fa-quote-left"></i> What Our Donors Say</h2>
+            <div class="testimonials-grid-compact">
+                <div class="testimonial-card-mini">
+                    <div class="testimonial-content-mini">
+                        <p>"5 years donating. Incredibly rewarding knowing I help save lives. Quick process, friendly staff."</p>
+                    </div>
+                    <div class="testimonial-author-mini">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info-mini">
+                            <strong>John D.</strong>
+                            <span>15 donations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card-mini">
+                    <div class="testimonial-content-mini">
+                        <p>"After my sister needed blood during surgery, I realized how important donors are. Now I donate regularly."</p>
+                    </div>
+                    <div class="testimonial-author-mini">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info-mini">
+                            <strong>Sarah M.</strong>
+                            <span>8 donations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card-mini">
+                    <div class="testimonial-content-mini">
+                        <p>"Nervous about first donation, but staff made me comfortable. Now I look forward to appointments."</p>
+                    </div>
+                    <div class="testimonial-author-mini">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info-mini">
+                            <strong>Mike R.</strong>
+                            <span>3 donations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-compact">
+        <div class="container">
+            <div class="cta-content-compact">
+                <h2>Ready to Save Lives?</h2>
+                <p>Join our community of heroes and start making a difference today</p>
+                <div class="cta-actions-compact">
+                    <a href="auth/register.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-heart"></i> Become a Donor
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-question-circle"></i> Have Questions?
+                    </a>
+                </div>
+                <div class="cta-stats-compact">
+                    <div class="cta-stat-mini">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Donors</span>
+                    </div>
+                    <div class="cta-stat-mini">
+                        <span class="stat-number">25K+</span>
+                        <span class="stat-label">Lives Saved</span>
+                    </div>
+                    <div class="cta-stat-mini">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Hospitals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-tint"></i>
+                        <span>BloodConnect</span>
+                    </div>
+                    <p>Connecting lives through the gift of blood donation. Every drop counts, every donor matters.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="become-donor.html">Become a Donor</a></li>
+                        <li><a href="request-blood.html">Request Blood</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <div class="emergency-contact">
+                        <p><i class="fas fa-phone"></i> 1-800-BLOOD-911</p>
+                        <p><i class="fas fa-envelope"></i> emergency@bloodconnect.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BloodConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/become-donor.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

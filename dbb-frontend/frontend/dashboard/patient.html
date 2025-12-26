@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <i class="fas fa-tint"></i>
+            <span>BloodConnect</span>
+        </div>
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name">Jane Smith</span>
+                <span class="user-role">Patient</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user-injured"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">1</span>
+                </button>
+                <button class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" title="Logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Dashboard</h3>
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Blood Requests</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-search"></i>
+                        <span>Search Blood</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>New Request</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-list"></i>
+                        <span>My Requests</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-history"></i>
+                        <span>Request History</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Emergency Request</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Information</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-hospital"></i>
+                        <span>Find Hospitals</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Blood Types Info</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Profile</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>My Profile</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-cogs"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Patient Profile Card -->
+            <div class="patient-profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="user-name">Jane Smith</h2>
+                        <p>Patient ID: <span class="patient-id">PT-2024-001</span></p>
+                        <div class="blood-group-highlight">
+                            <i class="fas fa-tint"></i>
+                            <span>Blood Type: <span class="blood-type">A+</span></span>
+                        </div>
+                    </div>
+                    <div class="emergency-button">
+                        <button class="btn btn-danger btn-lg" onclick="showEmergencyRequestModal()">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Emergency Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Availability Search -->
+            <div class="blood-search-section">
+                <div class="card-header">
+                    <h3>Search Blood Availability</h3>
+                    <p>Find available blood units at nearby hospitals</p>
+                </div>
+                <div class="search-container">
+                    <div class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Blood Type Needed</label>
+                                <select class="form-control" id="searchBloodType">
+                                    <option value="">Select Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Location Preference</label>
+                                <select class="form-control" id="locationPreference">
+                                    <option value="nearest">Nearest Hospitals</option>
+                                    <option value="city-center">City Center</option>
+                                    <option value="north-district">North District</option>
+                                    <option value="south-district">South District</option>
+                                    <option value="east-district">East District</option>
+                                    <option value="west-district">West District</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Search Radius</label>
+                                <select class="form-control" id="searchRadius">
+                                    <option value="5">Within 5 km</option>
+                                    <option value="10">Within 10 km</option>
+                                    <option value="25">Within 25 km</option>
+                                    <option value="50">Within 50 km</option>
+                                    <option value="all">All Locations</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="searchBloodAvailability()">
+                                    <i class="fas fa-search"></i>
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults">
+                        <!-- Search results will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Request Form -->
+            <div class="quick-request-section">
+                <div class="card-header">
+                    <h3>Quick Blood Request</h3>
+                    <p>Submit a blood request quickly and easily</p>
+                </div>
+                <div class="request-form-container">
+                    <form class="quick-request-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Blood Type Needed</label>
+                                <select class="form-control" name="bloodType" required>
+                                    <option value="">Select Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Units Required</label>
+                                <select class="form-control" name="units" required>
+                                    <option value="">Select Units</option>
+                                    <option value="1">1 Unit</option>
+                                    <option value="2">2 Units</option>
+                                    <option value="3">3 Units</option>
+                                    <option value="4">4 Units</option>
+                                    <option value="5">5+ Units</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Priority Level</label>
+                                <select class="form-control" name="priority" id="prioritySelect" required onchange="toggleEmergencyReason()">
+                                    <option value="">Select Priority</option>
+                                    <option value="routine">Routine</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="emergency">Emergency</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Hospital</label>
+                                <select class="form-control" name="hospital" id="hospitalSelect" required>
+                                    <option value="">Select Hospital</option>
+                                    <option value="city-general">City General Hospital (2.3 km)</option>
+                                    <option value="metro-medical">Metro Medical Center (4.1 km)</option>
+                                    <option value="regional-hospital">Regional Hospital (6.8 km)</option>
+                                    <option value="community-health">Community Health Center (8.2 km)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Emergency Reason Field (Hidden by default) -->
+                        <div class="form-group" id="emergencyReasonGroup" style="display: none;">
+                            <label>Emergency Justification *</label>
+                            <select class="form-control" name="emergencyReason" id="emergencyReason">
+                                <option value="">Select emergency reason</option>
+                                <option value="accident">Traffic/Industrial Accident</option>
+                                <option value="surgery">Emergency Surgery</option>
+                                <option value="critical-condition">Critical Medical Condition</option>
+                                <option value="massive-bleeding">Massive Bleeding</option>
+                                <option value="trauma">Trauma/Injury</option>
+                                <option value="other">Other Critical Emergency</option>
+                            </select>
+                            <small class="form-help emergency-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Emergency requests are prioritized and require immediate justification
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label>Medical Reason</label>
+                            <textarea class="form-control" name="reason" rows="3" placeholder="Describe the medical condition or reason for blood requirement..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Doctor's Contact (Optional)</label>
+                            <input type="text" class="form-control" name="doctorContact" placeholder="Doctor's name and contact information">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Emergency Contact Person</label>
+                            <input type="text" class="form-control" name="emergencyContact" placeholder="Name and phone number of emergency contact" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Request
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i>
+                                Reset Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Request Status Tracking -->
+            <div class="request-status-section">
+                <div class="card-header">
+                    <h3>My Blood Requests</h3>
+                    <span class="badge info">3 active requests</span>
+                </div>
+                <div class="requests-timeline">
+                    <div class="request-item active">
+                        <div class="request-status-indicator pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="request-details">
+                            <div class="request-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="request-id">#REQ-2024-001</span>
+                            </div>
+                            <div class="request-info">
+                                <p><strong>Units:</strong> 2 units</p>
+                                <p><strong>Priority:</strong> Urgent</p>
+                                <p><strong>Hospital:</strong> City General Hospital</p>
+                                <p><strong>Submitted:</strong> 2 hours ago</p>
+                            </div>
+                            <div class="request-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 33%"></div>
+                                </div>
+                                <div class="progress-steps">
+                                    <span class="step completed">Submitted</span>
+                                    <span class="step active">Under Review</span>
+                                    <span class="step">Approved</span>
+                                    <span class="step">Fulfilled</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn-sm info">View Details</button>
+                            <button class="btn-sm secondary">Contact Hospital</button>
+                            <button class="btn-sm warning" onclick="cancelRequest('REQ-2024-001')">Cancel Request</button>
+                        </div>
+                    </div>
+
+                    <div class="request-item">
+                        <div class="request-status-indicator approved">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="request-details">
+                            <div class="request-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="request-id">#REQ-2024-002</span>
+                            </div>
+                            <div class="request-info">
+                                <p><strong>Units:</strong> 1 unit</p>
+                                <p><strong>Priority:</strong> Routine</p>
+                                <p><strong>Hospital:</strong> Metro Medical Center</p>
+                                <p><strong>Submitted:</strong> 1 day ago</p>
+                            </div>
+                            <div class="request-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <div class="progress-steps">
+                                    <span class="step completed">Submitted</span>
+                                    <span class="step completed">Under Review</span>
+                                    <span class="step completed">Approved</span>
+                                    <span class="step active">Preparing</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn-sm info">View Details</button>
+                            <button class="btn-sm success">Contact Hospital</button>
+                        </div>
+                    </div>
+
+                    <div class="request-item">
+                        <div class="request-status-indicator fulfilled">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="request-details">
+                            <div class="request-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="request-id">#REQ-2024-003</span>
+                            </div>
+                            <div class="request-info">
+                                <p><strong>Units:</strong> 3 units</p>
+                                <p><strong>Priority:</strong> Emergency</p>
+                                <p><strong>Hospital:</strong> City General Hospital</p>
+                                <p><strong>Submitted:</strong> 3 days ago</p>
+                            </div>
+                            <div class="request-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <div class="progress-steps">
+                                    <span class="step completed">Submitted</span>
+                                    <span class="step completed">Under Review</span>
+                                    <span class="step completed">Approved</span>
+                                    <span class="step completed">Fulfilled</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn-sm success">Download Receipt</button>
+                            <button class="btn-sm secondary">Rate Experience</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Request History & Re-Request -->
+            <div class="request-history-section">
+                <div class="card-header">
+                    <h3>Request History</h3>
+                    <p>View past requests and quickly re-submit similar requests</p>
+                </div>
+                <div class="history-timeline">
+                    <div class="history-item completed">
+                        <div class="history-status-indicator">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="history-id">#REQ-2024-003</span>
+                            </div>
+                            <div class="history-info">
+                                <p><strong>Units:</strong> 3 units • <strong>Hospital:</strong> City General Hospital</p>
+                                <p><strong>Reason:</strong> Emergency surgery requirements</p>
+                                <p><strong>Completed:</strong> Nov 15, 2024</p>
+                            </div>
+                        </div>
+                        <div class="history-actions">
+                            <button class="btn-sm success" onclick="reSubmitRequest('REQ-2024-003')">
+                                <i class="fas fa-redo"></i>
+                                Re-submit Similar
+                            </button>
+                            <button class="btn-sm info" onclick="downloadReceipt('REQ-2024-003')">
+                                <i class="fas fa-download"></i>
+                                Receipt
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="history-item completed">
+                        <div class="history-status-indicator">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="history-id">#REQ-2024-001</span>
+                            </div>
+                            <div class="history-info">
+                                <p><strong>Units:</strong> 2 units • <strong>Hospital:</strong> Metro Medical Center</p>
+                                <p><strong>Reason:</strong> Scheduled surgery preparation</p>
+                                <p><strong>Completed:</strong> Oct 20, 2024</p>
+                            </div>
+                        </div>
+                        <div class="history-actions">
+                            <button class="btn-sm success" onclick="reSubmitRequest('REQ-2024-001')">
+                                <i class="fas fa-redo"></i>
+                                Re-submit Similar
+                            </button>
+                            <button class="btn-sm info" onclick="downloadReceipt('REQ-2024-001')">
+                                <i class="fas fa-download"></i>
+                                Receipt
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="history-item cancelled">
+                        <div class="history-status-indicator">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-header">
+                                <h4>A+ Blood Request</h4>
+                                <span class="history-id">#REQ-2024-002</span>
+                            </div>
+                            <div class="history-info">
+                                <p><strong>Units:</strong> 1 unit • <strong>Hospital:</strong> Regional Hospital</p>
+                                <p><strong>Reason:</strong> Routine transfusion</p>
+                                <p><strong>Cancelled:</strong> Oct 25, 2024 (No longer needed)</p>
+                            </div>
+                        </div>
+                        <div class="history-actions">
+                            <button class="btn-sm success" onclick="reSubmitRequest('REQ-2024-002')">
+                                <i class="fas fa-redo"></i>
+                                Re-submit Similar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Management -->
+            <div class="profile-management-section">
+                <div class="card-header">
+                    <h3>Profile Management</h3>
+                    <button class="btn btn-primary" onclick="showEditProfileModal()">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </button>
+                </div>
+                <div class="profile-info-grid">
+                    <div class="profile-section">
+                        <h4>Personal Information</h4>
+                        <div class="profile-item">
+                            <span class="label">Full Name:</span>
+                            <span class="value">Jane Smith</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Blood Type:</span>
+                            <span class="value blood-type-badge">A+</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Date of Birth:</span>
+                            <span class="value">March 15, 1985</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Gender:</span>
+                            <span class="value">Female</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h4>Contact Information</h4>
+                        <div class="profile-item">
+                            <span class="label">Email:</span>
+                            <span class="value">jane.smith@email.com</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Phone:</span>
+                            <span class="value">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Address:</span>
+                            <span class="value">123 Main St, City Center</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Emergency Contact:</span>
+                            <span class="value">John Smith - +1 (555) 987-6543</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h4>Medical Information</h4>
+                        <div class="profile-item">
+                            <span class="label">Medical ID:</span>
+                            <span class="value">MED-2024-001</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Insurance:</span>
+                            <span class="value">HealthCare Plus</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Allergies:</span>
+                            <span class="value">None reported</span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="label">Medical Conditions:</span>
+                            <span class="value">None reported</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hospital Information -->
+            <div class="hospital-info-section">
+                <div class="card-header">
+                    <h3>Nearby Hospitals & Blood Banks</h3>
+                    <button class="btn-sm primary">View All</button>
+                </div>
+                <div class="hospitals-grid">
+                    <div class="hospital-card">
+                        <div class="hospital-header">
+                            <div class="hospital-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="hospital-info">
+                                <h4>City General Hospital</h4>
+                                <p>Level 1 Trauma Center</p>
+                                <div class="hospital-distance">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>2.3 km away</span>
+                                </div>
+                            </div>
+                            <div class="hospital-status available">
+                                <span>Available</span>
+                            </div>
+                        </div>
+                        <div class="hospital-details">
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>24/7 Emergency</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tint"></i>
+                                <span>A+ Available: 45 units</span>
+                            </div>
+                        </div>
+                        <div class="hospital-actions">
+                            <button class="btn-sm primary">Contact</button>
+                            <button class="btn-sm secondary">Directions</button>
+                        </div>
+                    </div>
+
+                    <div class="hospital-card">
+                        <div class="hospital-header">
+                            <div class="hospital-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="hospital-info">
+                                <h4>Metro Medical Center</h4>
+                                <p>Specialized Blood Bank</p>
+                                <div class="hospital-distance">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>4.1 km away</span>
+                                </div>
+                            </div>
+                            <div class="hospital-status limited">
+                                <span>Limited</span>
+                            </div>
+                        </div>
+                        <div class="hospital-details">
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 987-6543</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8 AM - 8 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tint"></i>
+                                <span>A+ Available: 12 units</span>
+                            </div>
+                        </div>
+                        <div class="hospital-actions">
+                            <button class="btn-sm primary">Contact</button>
+                            <button class="btn-sm secondary">Directions</button>
+                        </div>
+                    </div>
+
+                    <div class="hospital-card">
+                        <div class="hospital-header">
+                            <div class="hospital-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="hospital-info">
+                                <h4>Regional Hospital</h4>
+                                <p>General Hospital</p>
+                                <div class="hospital-distance">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>6.8 km away</span>
+                                </div>
+                            </div>
+                            <div class="hospital-status unavailable">
+                                <span>Unavailable</span>
+                            </div>
+                        </div>
+                        <div class="hospital-details">
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 456-7890</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>24/7 Emergency</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tint"></i>
+                                <span>A+ Available: 0 units</span>
+                            </div>
+                        </div>
+                        <div class="hospital-actions">
+                            <button class="btn-sm secondary">Contact</button>
+                            <button class="btn-sm secondary">Directions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Type Information -->
+            <div class="blood-info-section">
+                <div class="card-header">
+                    <h3>Blood Type Compatibility</h3>
+                    <p>Understanding blood type compatibility for transfusions</p>
+                </div>
+                <div class="compatibility-info">
+                    <div class="patient-blood-type">
+                        <div class="blood-type-card highlight">
+                            <div class="blood-type-icon">A+</div>
+                            <h4>Your Blood Type</h4>
+                            <p>You can receive blood from:</p>
+                            <div class="compatible-types">
+                                <span class="blood-badge compatible">A+</span>
+                                <span class="blood-badge compatible">A-</span>
+                                <span class="blood-badge compatible">O+</span>
+                                <span class="blood-badge compatible">O-</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compatibility-chart">
+                        <h4>Quick Reference</h4>
+                        <div class="chart-info">
+                            <div class="info-item">
+                                <span class="blood-badge compatible">Compatible</span>
+                                <span>Safe to receive</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="blood-badge incompatible">Incompatible</span>
+                                <span>Not safe to receive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/patient-dashboard-new.js"></script>
+    <script>
+        // Initialize dashboard authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!protectDashboard('patient')) {
+                return; // Will redirect if not authenticated
+            }
+            initializeDashboardUser();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <i class="fas fa-tint"></i>
+            <span>BloodConnect</span>
+        </div>
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name">Admin User</span>
+                <span class="user-role">Administrator</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" title="Logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Overview</h3>
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Management</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-users"></i>
+                        <span>Donors</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-hospital"></i>
+                        <span>Hospitals</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Blood Stock</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        <span>Requests</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>System</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-cogs"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="dashboard-header-content">
+                    <div class="dashboard-header-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="dashboard-header-info">
+                        <h1>Admin Dashboard</h1>
+                        <p>Monitor and manage the BloodConnect system</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card primary interactive-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number counter" data-target="1247">0</h3>
+                        <p class="stat-label">Total Donors</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +12% this month
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="856">0</h3>
+                        <p class="stat-label">Blood Units Available</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +8% this week
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="23">0</h3>
+                        <p class="stat-label">Active Requests</p>
+                        <span class="stat-change negative">
+                            <i class="fas fa-arrow-down"></i> -5% today
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card danger">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="4">0</h3>
+                        <p class="stat-label">Critical Alerts</p>
+                        <span class="stat-change negative">
+                            <i class="fas fa-arrow-up"></i> +2 urgent
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Blood Type Distribution</h3>
+                        <div class="chart-actions">
+                            <button class="btn-sm">Export</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="bloodTypeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Monthly Donations</h3>
+                        <div class="chart-actions">
+                            <select class="select-sm">
+                                <option>Last 6 months</option>
+                                <option>Last year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="donationsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Quick Actions -->
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>John Doe</strong> registered as a donor</p>
+                                <span class="activity-time">2 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon primary">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>City Hospital</strong> requested 5 units of O+ blood</p>
+                                <span class="activity-time">15 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>AB- blood</strong> stock is running low</p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>Emergency request</strong> fulfilled successfully</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions-card">
+                    <div class="card-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="action-btn primary">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Add Donor</span>
+                        </button>
+                        <button class="action-btn success">
+                            <i class="fas fa-hospital"></i>
+                            <span>Register Hospital</span>
+                        </button>
+                        <button class="action-btn warning">
+                            <i class="fas fa-tint"></i>
+                            <span>Update Stock</span>
+                        </button>
+                        <button class="action-btn danger">
+                            <i class="fas fa-bell"></i>
+                            <span>Send Alert</span>
+                        </button>
+                        <button class="action-btn info">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Generate Report</span>
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-cogs"></i>
+                            <span>System Settings</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Approvals -->
+            <div class="approvals-card">
+                <div class="card-header">
+                    <h3>Pending Approvals</h3>
+                    <span class="badge danger">5 pending</span>
+                </div>
+                <div class="approvals-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Blood Group</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar-sm">JD</div>
+                                        <span>John Doe</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge primary">Donor</span></td>
+                                <td><span class="blood-type">O+</span></td>
+                                <td>Dec 25, 2024</td>
+                                <td>
+                                    <button class="btn-sm success">Approve</button>
+                                    <button class="btn-sm danger">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar-sm">MH</div>
+                                        <span>Metro Hospital</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge info">Hospital</span></td>
+                                <td>-</td>
+                                <td>Dec 24, 2024</td>
+                                <td>
+                                    <button class="btn-sm success">Approve</button>
+                                    <button class="btn-sm danger">Reject</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin-dashboard-dynamic.js"></script>
+    <script>
+        // Initialize dashboard authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!protectDashboard('admin')) {
+                return; // Will redirect if not authenticated
+            }
+            initializeDashboardUser();
+        });
+    </script>
+</body>
+</html>

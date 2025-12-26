@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Management - BloodConnect Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <i class="fas fa-tint"></i>
+            <span>BloodConnect Admin</span>
+        </div>
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name">System Administrator</span>
+                <span class="user-role">Admin</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">8</span>
+                </button>
+                <button class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Dashboard</h3>
+                    <a href="index.html" class="menu-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>User Management</h3>
+                    <a href="admin-users.html" class="menu-item">
+                        <i class="fas fa-users"></i>
+                        <span>All Users</span>
+                    </a>
+                    <a href="admin-donors.html" class="menu-item active">
+                        <i class="fas fa-heart"></i>
+                        <span>Donors</span>
+                    </a>
+                    <a href="admin-hospitals.html" class="menu-item">
+                        <i class="fas fa-hospital"></i>
+                        <span>Hospitals</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Blood Management</h3>
+                    <a href="admin-stock.html" class="menu-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Blood Stock</span>
+                    </a>
+                    <a href="admin-requests.html" class="menu-item">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        <span>Blood Requests</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Reports</h3>
+                    <a href="admin-reports.html" class="menu-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="admin-exports.html" class="menu-item">
+                        <i class="fas fa-download"></i>
+                        <span>Export Data</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Donor Management</h1>
+                    <p>Manage blood donors, eligibility, and donation history</p>
+                </div>
+                <div class="page-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Donors
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="fas fa-bell"></i>
+                        Send Notifications
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Add Donor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Donor Statistics -->
+            <div class="donor-stats-grid">
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">1,247</h3>
+                        <p class="stat-label">Total Donors</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +89 this month
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">856</h3>
+                        <p class="stat-label">Eligible Donors</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +45 available
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">391</h3>
+                        <p class="stat-label">Pending Eligibility</p>
+                        <span class="stat-change neutral">
+                            <i class="fas fa-calendar"></i> Next eligible soon
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card info">
+                    <div class="stat-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">2,847</h3>
+                        <p class="stat-label">Total Donations</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +156 this month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donor Filters -->
+            <div class="filters-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search donors by name, email, or ID..." id="donorSearch">
+                </div>
+                <div class="filter-controls">
+                    <select class="filter-select" id="bloodTypeFilter">
+                        <option value="">All Blood Types</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                    <select class="filter-select" id="eligibilityFilter">
+                        <option value="">All Eligibility</option>
+                        <option value="eligible">Eligible</option>
+                        <option value="not-eligible">Not Eligible</option>
+                        <option value="pending">Pending Review</option>
+                    </select>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+                    <select class="filter-select" id="locationFilter">
+                        <option value="">All Locations</option>
+                        <option value="city-center">City Center</option>
+                        <option value="north-district">North District</option>
+                        <option value="south-district">South District</option>
+                        <option value="east-district">East District</option>
+                        <option value="west-district">West District</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="clearFilters()">
+                        <i class="fas fa-times"></i>
+                        Clear Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Donors Grid -->
+            <div class="donors-grid-section">
+                <div class="section-header">
+                    <h3>All Donors</h3>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="donors-grid" id="donorsGrid">
+                    <div class="donor-card" data-blood-type="O+" data-eligibility="eligible" data-status="active">
+                        <div class="donor-header">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/60x60/3b82f6/ffffff?text=JD" alt="John Doe">
+                                <div class="eligibility-indicator eligible">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="donor-info">
+                                <h4>John Doe</h4>
+                                <p>john.doe@email.com</p>
+                                <div class="blood-type-badge">O+</div>
+                            </div>
+                            <div class="donor-status">
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Donations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">36</span>
+                                <span class="stat-label">Lives Saved</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">Gold</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-details">
+                            <div class="detail-row">
+                                <span>Last Donation:</span>
+                                <span>65 days ago</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Next Eligible:</span>
+                                <span class="eligible-text">Now</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Location:</span>
+                                <span>City Center</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-actions">
+                            <button class="btn-sm primary" onclick="viewDonor(1)">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="btn-sm success" onclick="approveDonor(1)">
+                                <i class="fas fa-check"></i>
+                                Approve
+                            </button>
+                            <button class="btn-sm warning" onclick="contactDonor(1)">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </button>
+                            <button class="btn-sm secondary" onclick="editDonor(1)">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="donor-card" data-blood-type="A+" data-eligibility="not-eligible" data-status="active">
+                        <div class="donor-header">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/60x60/ef4444/ffffff?text=SM" alt="Sarah Miller">
+                                <div class="eligibility-indicator not-eligible">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="donor-info">
+                                <h4>Sarah Miller</h4>
+                                <p>sarah.miller@email.com</p>
+                                <div class="blood-type-badge">A+</div>
+                            </div>
+                            <div class="donor-status">
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">8</span>
+                                <span class="stat-label">Donations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Lives Saved</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">Silver</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-details">
+                            <div class="detail-row">
+                                <span>Last Donation:</span>
+                                <span>28 days ago</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Next Eligible:</span>
+                                <span class="not-eligible-text">In 28 days</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Location:</span>
+                                <span>North District</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-actions">
+                            <button class="btn-sm primary" onclick="viewDonor(2)">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="btn-sm secondary" onclick="scheduleDonor(2)">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </button>
+                            <button class="btn-sm warning" onclick="contactDonor(2)">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </button>
+                            <button class="btn-sm secondary" onclick="editDonor(2)">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="donor-card" data-blood-type="B+" data-eligibility="pending" data-status="active">
+                        <div class="donor-header">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/60x60/f59e0b/ffffff?text=MJ" alt="Mike Johnson">
+                                <div class="eligibility-indicator pending">
+                                    <i class="fas fa-question"></i>
+                                </div>
+                            </div>
+                            <div class="donor-info">
+                                <h4>Mike Johnson</h4>
+                                <p>mike.johnson@email.com</p>
+                                <div class="blood-type-badge">B+</div>
+                            </div>
+                            <div class="donor-status">
+                                <span class="status-badge active">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Donations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">9</span>
+                                <span class="stat-label">Lives Saved</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">Bronze</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-details">
+                            <div class="detail-row">
+                                <span>Last Donation:</span>
+                                <span>45 days ago</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Health Check:</span>
+                                <span class="pending-text">Pending Review</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Location:</span>
+                                <span>South District</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-actions">
+                            <button class="btn-sm primary" onclick="viewDonor(3)">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="btn-sm success" onclick="reviewEligibility(3)">
+                                <i class="fas fa-stethoscope"></i>
+                                Review
+                            </button>
+                            <button class="btn-sm warning" onclick="contactDonor(3)">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </button>
+                            <button class="btn-sm secondary" onclick="editDonor(3)">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="donor-card" data-blood-type="O-" data-eligibility="eligible" data-status="inactive">
+                        <div class="donor-header">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/60x60/6b7280/ffffff?text=EB" alt="Emily Brown">
+                                <div class="eligibility-indicator eligible">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                            <div class="donor-info">
+                                <h4>Emily Brown</h4>
+                                <p>emily.brown@email.com</p>
+                                <div class="blood-type-badge rare">O-</div>
+                            </div>
+                            <div class="donor-status">
+                                <span class="status-badge inactive">Inactive</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">15</span>
+                                <span class="stat-label">Donations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">45</span>
+                                <span class="stat-label">Lives Saved</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">Platinum</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-details">
+                            <div class="detail-row">
+                                <span>Last Donation:</span>
+                                <span>120 days ago</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Last Active:</span>
+                                <span>30 days ago</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Location:</span>
+                                <span>West District</span>
+                            </div>
+                        </div>
+                        
+                        <div class="donor-actions">
+                            <button class="btn-sm primary" onclick="viewDonor(4)">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                            <button class="btn-sm success" onclick="reactivateDonor(4)">
+                                <i class="fas fa-undo"></i>
+                                Reactivate
+                            </button>
+                            <button class="btn-sm warning" onclick="contactDonor(4)">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </button>
+                            <button class="btn-sm secondary" onclick="editDonor(4)">
+                                <i class="fas fa-edit"></i>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section">
+                    <div class="pagination-info">
+                        Showing 1-4 of 1,247 donors
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="btn-sm secondary" disabled>Previous</button>
+                        <button class="btn-sm primary">1</button>
+                        <button class="btn-sm secondary">2</button>
+                        <button class="btn-sm secondary">3</button>
+                        <span>...</span>
+                        <button class="btn-sm secondary">312</button>
+                        <button class="btn-sm secondary">Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/admin-donors.js"></script>
+</body>
+</html>

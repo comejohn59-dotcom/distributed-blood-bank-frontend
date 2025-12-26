@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Patient - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../services.html" class="nav-link">Services</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+                <a href="../become-donor.html" class="nav-link">Become a Donor</a>
+                <a href="../request-blood.html" class="nav-link">Request Blood</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-trigger active">
+                        Register <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="register-donor.html" class="dropdown-item">
+                            <i class="fas fa-heart"></i> Register as Donor
+                        </a>
+                        <a href="register-patient.html" class="dropdown-item active">
+                            <i class="fas fa-user-injured"></i> Register as Patient
+                        </a>
+                        <a href="register-hospital.html" class="dropdown-item">
+                            <i class="fas fa-hospital"></i> Register as Hospital
+                        </a>
+                    </div>
+                </div>
+                <a href="login.html" class="nav-link">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Container -->
+    <div class="auth-container-modern">
+        <div class="auth-content-modern register-content">
+            <!-- Registration Form -->
+            <div class="auth-card-modern register-card">
+                <div class="auth-header-modern">
+                    <div class="auth-logo-modern patient-logo">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <h1>Get the Help You Need</h1>
+                    <p>Register to request blood and access our network of donors and hospitals</p>
+                </div>
+
+                <!-- Progress Indicator -->
+                <div class="progress-indicator">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Personal Info</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Medical Info</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Account Setup</div>
+                    </div>
+                </div>
+
+                <form class="auth-form-modern multi-step-form" id="patientRegistrationForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="step-title">Personal Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="firstName">First Name</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="firstName" name="firstName" class="form-control-modern" placeholder="Enter your first name" required>
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="lastName" name="lastName" class="form-control-modern" placeholder="Enter your last name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="email">Email Address</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="email" name="email" class="form-control-modern" placeholder="Enter your email address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="phone" name="phone" class="form-control-modern" placeholder="Enter your phone number" required>
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control-modern" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="address">Address</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="address" name="address" class="form-control-modern" placeholder="Enter your full address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="city">City</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-city"></i>
+                                    <input type="text" id="city" name="city" class="form-control-modern" placeholder="Enter your city" required>
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="zipCode">ZIP Code</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-mail-bulk"></i>
+                                    <input type="text" id="zipCode" name="zipCode" class="form-control-modern" placeholder="Enter ZIP code" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary btn-lg" onclick="nextStep()">
+                                Next Step <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Medical Information -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="step-title">Medical Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="bloodType">Blood Type</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-tint"></i>
+                                    <select id="bloodType" name="bloodType" class="form-control-modern" required>
+                                        <option value="">Select your blood type</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="unknown">Don't know</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="weight">Weight (kg)</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-weight"></i>
+                                    <input type="number" id="weight" name="weight" class="form-control-modern" placeholder="Enter your weight" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="medicalCondition">Primary Medical Condition</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-stethoscope"></i>
+                                <input type="text" id="medicalCondition" name="medicalCondition" class="form-control-modern" placeholder="e.g., Anemia, Surgery, Cancer treatment" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="physician">Primary Physician</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-user-md"></i>
+                                <input type="text" id="physician" name="physician" class="form-control-modern" placeholder="Dr. Name and Hospital/Clinic" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="physicianPhone">Physician Contact</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-phone-alt"></i>
+                                <input type="tel" id="physicianPhone" name="physicianPhone" class="form-control-modern" placeholder="Physician's phone number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label>Urgency Level</label>
+                            <div class="radio-group-modern">
+                                <label class="radio-item-modern">
+                                    <input type="radio" name="urgency" value="routine">
+                                    <span class="radio-checkmark"></span>
+                                    Routine - Planned procedure
+                                </label>
+                                <label class="radio-item-modern">
+                                    <input type="radio" name="urgency" value="urgent">
+                                    <span class="radio-checkmark"></span>
+                                    Urgent - Needed within days
+                                </label>
+                                <label class="radio-item-modern">
+                                    <input type="radio" name="urgency" value="emergency">
+                                    <span class="radio-checkmark"></span>
+                                    Emergency - Immediate need
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="nextStep()">
+                                Next Step <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Account Setup -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="step-title">Account Setup & Emergency Contacts</h3>
+                        
+                        <div class="form-group-modern">
+                            <label for="password">Create Password</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" name="password" class="form-control-modern" placeholder="Create a strong password" required>
+                                <button type="button" class="password-toggle-modern" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control-modern" placeholder="Confirm your password" required>
+                                <button type="button" class="password-toggle-modern" onclick="togglePassword('confirmPassword')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="emergencyContact1">Emergency Contact 1</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-user-friends"></i>
+                                    <input type="text" id="emergencyContact1" name="emergencyContact1" class="form-control-modern" placeholder="Full name" required>
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="emergencyPhone1">Contact 1 Phone</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <input type="tel" id="emergencyPhone1" name="emergencyPhone1" class="form-control-modern" placeholder="Phone number" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group-modern">
+                                <label for="emergencyContact2">Emergency Contact 2</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-user-friends"></i>
+                                    <input type="text" id="emergencyContact2" name="emergencyContact2" class="form-control-modern" placeholder="Full name (optional)">
+                                </div>
+                            </div>
+                            <div class="form-group-modern">
+                                <label for="emergencyPhone2">Contact 2 Phone</label>
+                                <div class="input-group-modern">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <input type="tel" id="emergencyPhone2" name="emergencyPhone2" class="form-control-modern" placeholder="Phone number (optional)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <label for="insuranceProvider">Insurance Provider</label>
+                            <div class="input-group-modern">
+                                <i class="fas fa-shield-alt"></i>
+                                <input type="text" id="insuranceProvider" name="insuranceProvider" class="form-control-modern" placeholder="Insurance company name (optional)">
+                            </div>
+                        </div>
+
+                        <div class="form-group-modern">
+                            <div class="checkbox-group-modern">
+                                <label class="checkbox-label-modern">
+                                    <input type="checkbox" name="terms" required>
+                                    <span class="checkmark-modern"></span>
+                                    I agree to the <a href="#" class="auth-link-modern">Terms of Service</a> and <a href="#" class="auth-link-modern">Privacy Policy</a>
+                                </label>
+                                <label class="checkbox-label-modern">
+                                    <input type="checkbox" name="notifications">
+                                    <span class="checkmark-modern"></span>
+                                    Send me updates about my blood requests and availability
+                                </label>
+                                <label class="checkbox-label-modern">
+                                    <input type="checkbox" name="emergencyAlerts">
+                                    <span class="checkmark-modern"></span>
+                                    Allow emergency contacts to receive notifications about my requests
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-lg auth-btn-modern">
+                                <i class="fas fa-user-plus"></i> Complete Registration
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="auth-footer-modern">
+                    <p>Already have an account? <a href="login.html" class="auth-link-modern">Sign in here</a></p>
+                </div>
+            </div>
+
+            <!-- Side Panel -->
+            <div class="auth-side-panel patient-panel">
+                <div class="side-panel-content">
+                    <div class="side-panel-header">
+                        <h2>Get the Blood You Need</h2>
+                        <p>Access our network of donors and hospitals to find the blood you need when you need it most.</p>
+                    </div>
+
+                    <div class="side-panel-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-search-location"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Find Blood Fast</h4>
+                                <p>Search available blood types in your area instantly</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-hospital-user"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Hospital Network</h4>
+                                <p>Connect with verified hospitals and blood banks</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Real-time Updates</h4>
+                                <p>Get notified when blood becomes available</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Safe & Secure</h4>
+                                <p>All blood is tested and verified for safety</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-panel-stats">
+                        <div class="stat-item-modern">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                        <div class="stat-item-modern">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Hospitals</div>
+                        </div>
+                        <div class="stat-item-modern">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

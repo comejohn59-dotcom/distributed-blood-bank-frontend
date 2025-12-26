@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Navigation -->
+     
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <i class="fas fa-tint"></i>
+            <span>BloodConnect</span>
+        </div>
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name">City General Hospital</span>
+                <span class="user-role">Hospital</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-hospital"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <button class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" title="Logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Dashboard</h3>
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Inventory</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Blood Stock</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Blood Units</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transfers</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Requests</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        <span>Blood Requests</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Donor Approvals</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Donation Offers</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Donations</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Scheduled Donations</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Confirm Donations</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Reports</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Usage Reports</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Compliance</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Hospital Info Card -->
+            <div class="hospital-info-card">
+                <div class="hospital-header">
+                    <div class="hospital-avatar">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="hospital-details">
+                        <h2 class="hospital-name">City General Hospital</h2>
+                        <p>Level 1 Trauma Center</p>
+                        <div class="hospital-status">
+                            <span class="status-indicator active"></span>
+                            <span>Active Blood Bank</span>
+                        </div>
+                    </div>
+                    <div class="hospital-actions">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Emergency Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="342">0</h3>
+                        <p class="stat-label">Total Blood Units</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +15 today
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="8">0</h3>
+                        <p class="stat-label">Low Stock Alerts</p>
+                        <span class="stat-change negative">
+                            <i class="fas fa-arrow-up"></i> +3 critical
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="28">0</h3>
+                        <p class="stat-label">Approved Donations</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +5 pending
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card info">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-target="156">0</h3>
+                        <p class="stat-label">Active Donors</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +12 this week
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Inventory Management -->
+            <div class="inventory-section">
+                <div class="section-header">
+                    <h3>Blood Inventory Management</h3>
+                    <div class="section-actions">
+                        <button class="btn btn-danger" onclick="showBloodRequestModal()">
+                            <i class="fas fa-hand-holding-medical"></i>
+                            Request Blood
+                        </button>
+                        <button class="btn btn-primary" onclick="showAddBloodModal()">
+                            <i class="fas fa-plus"></i>
+                            Add Blood Units
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+
+                <div class="inventory-grid">
+                    <div class="blood-inventory-card" data-type="A+">
+                        <div class="blood-type-header">
+                            <div class="blood-type-icon">A+</div>
+                            <div class="stock-status good">Good Stock</div>
+                        </div>
+                        <div class="stock-details">
+                            <div class="stock-number">45</div>
+                            <div class="stock-label">Units Available</div>
+                        </div>
+                        <div class="stock-info">
+                            <div class="info-item">
+                                <span>Expires in 7 days:</span>
+                                <span class="warning">8 units</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Last updated:</span>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="stock-actions">
+                            <button class="btn-sm primary">Update</button>
+                            <button class="btn-sm secondary">History</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-inventory-card" data-type="O+">
+                        <div class="blood-type-header">
+                            <div class="blood-type-icon">O+</div>
+                            <div class="stock-status good">Good Stock</div>
+                        </div>
+                        <div class="stock-details">
+                            <div class="stock-number">62</div>
+                            <div class="stock-label">Units Available</div>
+                        </div>
+                        <div class="stock-info">
+                            <div class="info-item">
+                                <span>Expires in 7 days:</span>
+                                <span class="warning">12 units</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Last updated:</span>
+                                <span>1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="stock-actions">
+                            <button class="btn-sm primary">Update</button>
+                            <button class="btn-sm secondary">History</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-inventory-card" data-type="B+">
+                        <div class="blood-type-header">
+                            <div class="blood-type-icon">B+</div>
+                            <div class="stock-status low">Low Stock</div>
+                        </div>
+                        <div class="stock-details">
+                            <div class="stock-number">18</div>
+                            <div class="stock-label">Units Available</div>
+                        </div>
+                        <div class="stock-info">
+                            <div class="info-item">
+                                <span>Expires in 7 days:</span>
+                                <span class="warning">5 units</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Last updated:</span>
+                                <span>30 min ago</span>
+                            </div>
+                        </div>
+                        <div class="stock-actions">
+                            <button class="btn-sm primary">Update</button>
+                            <button class="btn-sm secondary">History</button>
+                        </div>
+                    </div>
+
+                    <div class="blood-inventory-card" data-type="AB-">
+                        <div class="blood-type-header">
+                            <div class="blood-type-icon">AB-</div>
+                            <div class="stock-status critical">Critical</div>
+                        </div>
+                        <div class="stock-details">
+                            <div class="stock-number">3</div>
+                            <div class="stock-label">Units Available</div>
+                        </div>
+                        <div class="stock-info">
+                            <div class="info-item">
+                                <span>Expires in 7 days:</span>
+                                <span class="critical">2 units</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Last updated:</span>
+                                <span>15 min ago</span>
+                            </div>
+                        </div>
+                        <div class="stock-actions">
+                            <button class="btn-sm danger">Request</button>
+                            <button class="btn-sm secondary">History</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blood Request Management -->
+            <div class="blood-request-management">
+                <div class="request-tabs">
+                    <button class="tab-btn active" data-tab="incoming">
+                        <i class="fas fa-inbox"></i>
+                        Incoming Requests
+                        <span class="tab-badge">3</span>
+                    </button>
+                    <button class="tab-btn" data-tab="outgoing">
+                        <i class="fas fa-paper-plane"></i>
+                        My Requests
+                        <span class="tab-badge">2</span>
+                    </button>
+                </div>
+
+                <!-- Incoming Requests Tab -->
+                <div class="tab-content active" id="incoming-tab">
+                    <div class="card-header">
+                        <h3>Blood Requests from Other Hospitals</h3>
+                        <span class="badge warning">3 pending approval</span>
+                    </div>
+                    <div class="request-list">
+                        <div class="request-item incoming urgent">
+                            <div class="request-info">
+                                <div class="hospital-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Metro Medical Center</h4>
+                                    <p><strong>O- Blood • 5 units</strong></p>
+                                    <p>Emergency: Multiple trauma patients</p>
+                                    <span class="request-time">15 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="request-priority">
+                                <span class="priority-badge emergency">Emergency</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success" onclick="approveBloodRequest('req-001', 'Metro Medical Center', 'O-', 5)">
+                                    <i class="fas fa-check"></i>
+                                    Approve & Transfer
+                                </button>
+                                <button class="btn-sm danger" onclick="rejectBloodRequest('req-001')">
+                                    <i class="fas fa-times"></i>
+                                    Reject
+                                </button>
+                                <button class="btn-sm info" onclick="viewRequestDetails('req-001')">
+                                    <i class="fas fa-eye"></i>
+                                    Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="request-item incoming">
+                            <div class="request-info">
+                                <div class="hospital-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Regional Hospital</h4>
+                                    <p><strong>A+ Blood • 3 units</strong></p>
+                                    <p>Scheduled surgery preparation</p>
+                                    <span class="request-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="request-priority">
+                                <span class="priority-badge normal">Normal</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success" onclick="approveBloodRequest('req-002', 'Regional Hospital', 'A+', 3)">
+                                    <i class="fas fa-check"></i>
+                                    Approve & Transfer
+                                </button>
+                                <button class="btn-sm danger" onclick="rejectBloodRequest('req-002')">
+                                    <i class="fas fa-times"></i>
+                                    Reject
+                                </button>
+                                <button class="btn-sm info" onclick="viewRequestDetails('req-002')">
+                                    <i class="fas fa-eye"></i>
+                                    Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="request-item incoming">
+                            <div class="request-info">
+                                <div class="hospital-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Community Health Center</h4>
+                                    <p><strong>B+ Blood • 2 units</strong></p>
+                                    <p>Patient transfusion requirement</p>
+                                    <span class="request-time">4 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="request-priority">
+                                <span class="priority-badge urgent">Urgent</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success" onclick="approveBloodRequest('req-003', 'Community Health Center', 'B+', 2)">
+                                    <i class="fas fa-check"></i>
+                                    Approve & Transfer
+                                </button>
+                                <button class="btn-sm danger" onclick="rejectBloodRequest('req-003')">
+                                    <i class="fas fa-times"></i>
+                                    Reject
+                                </button>
+                                <button class="btn-sm info" onclick="viewRequestDetails('req-003')">
+                                    <i class="fas fa-eye"></i>
+                                    Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outgoing Requests Tab -->
+                <div class="tab-content" id="outgoing-tab">
+                    <div class="card-header">
+                        <h3>My Blood Requests</h3>
+                        <button class="btn btn-primary" onclick="showBloodRequestModal()">
+                            <i class="fas fa-plus"></i>
+                            New Request
+                        </button>
+                    </div>
+                    <div class="request-list">
+                        <div class="request-item outgoing">
+                            <div class="request-info">
+                                <div class="request-icon pending">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>AB- Blood Request</h4>
+                                    <p><strong>To: Central Blood Bank • 4 units</strong></p>
+                                    <p>Critical patient - rare blood type needed</p>
+                                    <span class="request-time">30 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="request-status">
+                                <span class="status-badge pending">Pending Approval</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm info" onclick="trackRequest('out-001')">
+                                    <i class="fas fa-search"></i>
+                                    Track
+                                </button>
+                                <button class="btn-sm warning" onclick="editRequest('out-001')">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn-sm danger" onclick="cancelRequest('out-001')">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="request-item outgoing">
+                            <div class="request-info">
+                                <div class="request-icon approved">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>O+ Blood Request</h4>
+                                    <p><strong>From: Metro Medical Center • 6 units</strong></p>
+                                    <p>Emergency surgery requirements</p>
+                                    <span class="request-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="request-status">
+                                <span class="status-badge approved">Approved - In Transit</span>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success" onclick="confirmReceived('out-002')">
+                                    <i class="fas fa-check-double"></i>
+                                    Confirm Received
+                                </button>
+                                <button class="btn-sm info" onclick="trackRequest('out-002')">
+                                    <i class="fas fa-truck"></i>
+                                    Track Delivery
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donation Offers Management -->
+            <div class="donation-offers-management">
+                <div class="section-header">
+                    <h3>Donation Offers from Donors</h3>
+                    <div class="section-actions">
+                        <span class="badge primary">5 pending review</span>
+                        <button class="btn btn-info" onclick="viewWorkflowStatus()">
+                            <i class="fas fa-chart-line"></i>
+                            Workflow Status
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshDonationOffers()">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Workflow Status Panel -->
+                <div class="workflow-status-panel" id="workflowStatusPanel" style="display: none;">
+                    <div class="workflow-stats">
+                        <div class="workflow-stat">
+                            <div class="stat-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="pendingCount">0</div>
+                                <div class="stat-label">Pending Review</div>
+                            </div>
+                        </div>
+                        <div class="workflow-stat">
+                            <div class="stat-icon accepted">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="acceptedCount">0</div>
+                                <div class="stat-label">Accepted & Scheduled</div>
+                            </div>
+                        </div>
+                        <div class="workflow-stat">
+                            <div class="stat-icon completed">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="completedCount">0</div>
+                                <div class="stat-label">Donations Completed</div>
+                            </div>
+                        </div>
+                        <div class="workflow-stat">
+                            <div class="stat-icon rejected">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="rejectedCount">0</div>
+                                <div class="stat-label">Rejected Offers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-rules">
+                        <h4>System Rules Active</h4>
+                        <div class="rule-item">
+                            <i class="fas fa-check text-success"></i>
+                            <span>One donation → one hospital (exclusive offers)</span>
+                        </div>
+                        <div class="rule-item">
+                            <i class="fas fa-check text-success"></i>
+                            <span>Hospital must accept donor before donation</span>
+                        </div>
+                        <div class="rule-item">
+                            <i class="fas fa-check text-success"></i>
+                            <span>Donor cannot donate without eligibility</span>
+                        </div>
+                        <div class="rule-item">
+                            <i class="fas fa-check text-success"></i>
+                            <span>Admin can view all donations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donation-offers-list">
+                    <div class="donation-offer-item pending">
+                        <div class="donor-info">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/50" alt="John Doe">
+                            </div>
+                            <div class="donor-details">
+                                <h4>John Doe</h4>
+                                <p><strong>O+ Blood • 450ml</strong></p>
+                                <p>Available: Tomorrow 2:00 PM</p>
+                                <div class="donor-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-tint"></i>
+                                        12 donations
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-star"></i>
+                                        Verified donor
+                                    </span>
+                                </div>
+                                <span class="offer-time">25 minutes ago</span>
+                            </div>
+                        </div>
+                        <div class="donation-status">
+                            <span class="status-badge pending">Pending Review</span>
+                        </div>
+                        <div class="donation-actions">
+                            <button class="btn-sm success" onclick="acceptDonationOffer('don-001', 'John Doe', 'O+')">
+                                <i class="fas fa-check"></i>
+                                Accept Donor
+                            </button>
+                            <button class="btn-sm danger" onclick="rejectDonationOffer('don-001', 'John Doe')">
+                                <i class="fas fa-times"></i>
+                                Reject
+                            </button>
+                            <button class="btn-sm info" onclick="viewDonorProfile('don-001')">
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="donation-offer-item pending">
+                        <div class="donor-info">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/50" alt="Sarah Miller">
+                            </div>
+                            <div class="donor-details">
+                                <h4>Sarah Miller</h4>
+                                <p><strong>A+ Blood • 450ml</strong></p>
+                                <p>Available: Today 4:00 PM</p>
+                                <div class="donor-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-tint"></i>
+                                        8 donations
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-shield-alt"></i>
+                                        Health verified
+                                    </span>
+                                </div>
+                                <span class="offer-time">1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="donation-status">
+                            <span class="status-badge pending">Pending Review</span>
+                        </div>
+                        <div class="donation-actions">
+                            <button class="btn-sm success" onclick="acceptDonationOffer('don-002', 'Sarah Miller', 'A+')">
+                                <i class="fas fa-check"></i>
+                                Accept Donor
+                            </button>
+                            <button class="btn-sm danger" onclick="rejectDonationOffer('don-002', 'Sarah Miller')">
+                                <i class="fas fa-times"></i>
+                                Reject
+                            </button>
+                            <button class="btn-sm info" onclick="viewDonorProfile('don-002')">
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="donation-offer-item accepted">
+                        <div class="donor-info">
+                            <div class="donor-avatar">
+                                <img src="https://via.placeholder.com/50" alt="Michael Johnson">
+                            </div>
+                            <div class="donor-details">
+                                <h4>Michael Johnson</h4>
+                                <p><strong>B+ Blood • 450ml</strong></p>
+                                <p>Scheduled: Today 6:00 PM</p>
+                                <div class="donor-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-tint"></i>
+                                        15 donations
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-medal"></i>
+                                        Gold donor
+                                    </span>
+                                </div>
+                                <span class="offer-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="donation-status">
+                            <span class="status-badge accepted">Appointment Confirmed</span>
+                        </div>
+                        <div class="donation-actions">
+                            <button class="btn-sm primary" onclick="confirmDonationCompleted('don-003', 'Michael Johnson', 'B+')">
+                                <i class="fas fa-check-circle"></i>
+                                Confirm Donation
+                            </button>
+                            <button class="btn-sm warning" onclick="rescheduleAppointment('don-003')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Reschedule
+                            </button>
+                            <button class="btn-sm info" onclick="contactDonor('don-003')">
+                                <i class="fas fa-phone"></i>
+                                Contact
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Approvals & Requests -->
+            <div class="approvals-requests-grid">
+                <div class="pending-donations">
+                    <div class="card-header">
+                        <h3>Pending Donor Approvals</h3>
+                        <span class="badge primary">12 pending</span>
+                    </div>
+                    <div class="donations-list">
+                        <div class="donation-item">
+                            <div class="donor-info">
+                                <div class="donor-avatar">JD</div>
+                                <div class="donor-details">
+                                    <h4>John Doe</h4>
+                                    <p>O+ • 450ml • Walk-in</p>
+                                    <span class="time">15 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="donation-actions">
+                                <button class="btn-sm success">Approve</button>
+                                <button class="btn-sm danger">Reject</button>
+                                <button class="btn-sm info">Details</button>
+                            </div>
+                        </div>
+
+                        <div class="donation-item">
+                            <div class="donor-info">
+                                <div class="donor-avatar">SM</div>
+                                <div class="donor-details">
+                                    <h4>Sarah Miller</h4>
+                                    <p>A+ • 450ml • Scheduled</p>
+                                    <span class="time">32 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="donation-actions">
+                                <button class="btn-sm success">Approve</button>
+                                <button class="btn-sm danger">Reject</button>
+                                <button class="btn-sm info">Details</button>
+                            </div>
+                        </div>
+
+                        <div class="donation-item">
+                            <div class="donor-info">
+                                <div class="donor-avatar">MJ</div>
+                                <div class="donor-details">
+                                    <h4>Michael Johnson</h4>
+                                    <p>B+ • 450ml • Emergency</p>
+                                    <span class="time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="donation-actions">
+                                <button class="btn-sm success">Approve</button>
+                                <button class="btn-sm danger">Reject</button>
+                                <button class="btn-sm info">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blood-requests">
+                    <div class="card-header">
+                        <h3>Incoming Blood Requests</h3>
+                        <span class="badge warning">8 requests</span>
+                    </div>
+                    <div class="requests-list">
+                        <div class="request-item urgent">
+                            <div class="request-info">
+                                <div class="request-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Emergency Request</h4>
+                                    <p>O+ • 3 units • Trauma patient</p>
+                                    <span class="time">5 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success">Fulfill</button>
+                                <button class="btn-sm secondary">Transfer</button>
+                            </div>
+                        </div>
+
+                        <div class="request-item">
+                            <div class="request-info">
+                                <div class="request-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Metro Hospital</h4>
+                                    <p>A+ • 2 units • Surgery prep</p>
+                                    <span class="time">25 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success">Fulfill</button>
+                                <button class="btn-sm secondary">Transfer</button>
+                            </div>
+                        </div>
+
+                        <div class="request-item">
+                            <div class="request-info">
+                                <div class="request-icon">
+                                    <i class="fas fa-user-injured"></i>
+                                </div>
+                                <div class="request-details">
+                                    <h4>Patient Request</h4>
+                                    <p>AB- • 1 unit • Scheduled surgery</p>
+                                    <span class="time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-sm success">Fulfill</button>
+                                <button class="btn-sm secondary">Transfer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Alerts -->
+            <div class="alerts-section">
+                <div class="card-header">
+                    <h3>Real-time Stock Alerts</h3>
+                    <button class="btn-sm secondary">Configure Alerts</button>
+                </div>
+                <div class="alerts-list">
+                    <div class="alert-item critical">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Critical Stock Level</h4>
+                            <p>AB- blood type has only 3 units remaining</p>
+                            <span class="alert-time">2 minutes ago</span>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn-sm danger">Request Blood</button>
+                            <button class="btn-sm secondary">Dismiss</button>
+                        </div>
+                    </div>
+
+                    <div class="alert-item warning">
+                        <div class="alert-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Expiring Soon</h4>
+                            <p>8 units of A+ blood expire within 7 days</p>
+                            <span class="alert-time">15 minutes ago</span>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn-sm warning">Use First</button>
+                            <button class="btn-sm secondary">Dismiss</button>
+                        </div>
+                    </div>
+
+                    <div class="alert-item info">
+                        <div class="alert-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Donation Received</h4>
+                            <p>New O+ donation received and processed</p>
+                            <span class="alert-time">1 hour ago</span>
+                        </div>
+                        <div class="alert-actions">
+                            <button class="btn-sm secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/hospital-dashboard-dynamic.js"></script>
+    <script>
+        // Initialize dashboard authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!protectDashboard('hospital')) {
+                return; // Will redirect if not authenticated
+            }
+            initializeDashboardUser();
+        });
+    </script>
+</body>
+</html>

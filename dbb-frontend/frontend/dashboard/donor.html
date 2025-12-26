@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-brand">
+            <i class="fas fa-tint"></i>
+            <span>BloodConnect</span>
+        </div>
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name">John Doe</span>
+                <span class="user-role">Donor</span>
+            </div>
+            <div class="user-avatar">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">2</span>
+                </button>
+                <button class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn-icon" title="Logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h3>Dashboard</h3>
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Donation</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-heart"></i>
+                        <span>My Donations</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Schedule Donation</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Find Centers</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Eligibility Check</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Impact & Rewards</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>My Impact</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-download"></i>
+                        <span>Download History</span>
+                    </a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>Profile</h3>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>My Profile</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-cogs"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="dashboard-header-content">
+                    <div class="dashboard-header-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="dashboard-header-info">
+                        <h1>Donor Dashboard</h1>
+                        <p>Welcome back, John! Ready to save lives today?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Profile Card -->
+            <div class="donor-profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/80x80/dc2626/ffffff?text=JD" alt="Profile" class="profile-image">
+                        <button class="edit-photo-btn" onclick="showEditPhotoModal()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="user-name">John Doe</h2>
+                        <p>Registered Donor • ID: <span class="donor-id">DON-2024-001</span></p>
+                        <div class="blood-group-highlight">
+                            <i class="fas fa-tint"></i>
+                            <span><span class="blood-type">O+</span> Universal Donor</span>
+                        </div>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> john.doe@email.com</p>
+                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Downtown District</p>
+                        </div>
+                    </div>
+                    <div class="donation-status">
+                        <div class="status-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked id="availabilityToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-label">Available to Donate</span>
+                        </div>
+                        <button class="btn btn-outline-light btn-sm" onclick="showEditProfileModal()">
+                            <i class="fas fa-edit"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalDonations">12</div>
+                        <div class="stat-label">Total Donations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="livesSaved">36</div>
+                        <div class="stat-label">Lives Saved</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2.5L</div>
+                        <div class="stat-label">Blood Donated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value donor-level">Gold</div>
+                        <div class="stat-label">Donor Level</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1,250</div>
+                        <div class="stat-label">Donor Points</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eligibility Status -->
+            <div class="eligibility-card">
+                <div class="card-header">
+                    <h3>Donation Eligibility</h3>
+                    <span class="badge success">Eligible</span>
+                </div>
+                <div class="eligibility-content">
+                    <div class="eligibility-grid">
+                        <div class="eligibility-section">
+                            <h4>Health Status</h4>
+                            <div class="eligibility-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Last donation: 65 days ago</span>
+                            </div>
+                            <div class="eligibility-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Health status: Good</span>
+                            </div>
+                            <div class="eligibility-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Age: 28 years (Eligible range)</span>
+                            </div>
+                            <div class="eligibility-item">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span>Weight: 70kg (Above minimum)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="eligibility-section">
+                            <h4>Next Donation</h4>
+                            <div class="next-donation-info">
+                                <div class="countdown-circle">
+                                    <div class="countdown-text">
+                                        <span class="countdown-number">0</span>
+                                        <span class="countdown-label">Days Left</span>
+                                    </div>
+                                </div>
+                                <p><strong>Status:</strong> Ready to donate now!</p>
+                                <p><strong>Recommended:</strong> Within next 7 days</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donation-actions">
+                        <button class="btn btn-primary btn-lg" onclick="showScheduleModal()">
+                            <i class="fas fa-calendar-plus"></i>
+                            Schedule Donation
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="showNearbyHospitals()">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Find Nearby Centers
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="showPreDonationChecklist()">
+                            <i class="fas fa-clipboard-list"></i>
+                            Pre-Donation Checklist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Requests -->
+            <div class="emergency-requests">
+                <div class="card-header">
+                    <h3>Emergency Requests Near You</h3>
+                    <span class="badge danger">2 Urgent</span>
+                </div>
+                <div class="emergency-list">
+                    <div class="emergency-item urgent">
+                        <div class="emergency-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="emergency-content">
+                            <h4>Critical: O+ Blood Needed</h4>
+                            <p><strong>City General Hospital</strong> - 2.5 km away</p>
+                            <p>Patient in critical condition, immediate donation needed</p>
+                            <div class="emergency-actions">
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-phone"></i>
+                                    Call Hospital
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </button>
+                            </div>
+                        </div>
+                        <div class="emergency-time">
+                            <span>Posted 15 min ago</span>
+                        </div>
+                    </div>
+
+                    <div class="emergency-item">
+                        <div class="emergency-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="emergency-content">
+                            <h4>O+ Blood Stock Low</h4>
+                            <p><strong>Metro Blood Bank</strong> - 4.1 km away</p>
+                            <p>Running low on O+ blood, donations needed</p>
+                            <div class="emergency-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-info-circle"></i>
+                                    More Info
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-calendar"></i>
+                                    Schedule Visit
+                                </button>
+                            </div>
+                        </div>
+                        <div class="emergency-time">
+                            <span>Posted 2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donation History Timeline -->
+            <div class="donation-history">
+                <div class="card-header">
+                    <h3>Donation History</h3>
+                    <div class="header-actions">
+                        <button class="btn btn-outline-primary btn-sm" onclick="downloadHistory()">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="downloadHistoryCSV()">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker success">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Blood Donation</h4>
+                            <p><strong>City General Hospital</strong></p>
+                            <p>Donated 450ml of O+ blood</p>
+                            <div class="donation-details">
+                                <span class="detail-badge">Regular Donation</span>
+                                <span class="detail-badge">Hemoglobin: 14.2 g/dL</span>
+                            </div>
+                            <span class="timeline-date">October 20, 2024</span>
+                        </div>
+                        <div class="timeline-status">
+                            <span class="badge success">Completed</span>
+                            <div class="timeline-actions">
+                                <button class="btn-sm secondary" onclick="viewDonationCertificate('DON-001')">
+                                    <i class="fas fa-certificate"></i>
+                                    Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker success">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Emergency Donation</h4>
+                            <p><strong>Metro Blood Bank</strong></p>
+                            <p>Emergency donation for accident victim</p>
+                            <div class="donation-details">
+                                <span class="detail-badge emergency">Emergency Response</span>
+                                <span class="detail-badge">Lives Saved: 2</span>
+                            </div>
+                            <span class="timeline-date">August 15, 2024</span>
+                        </div>
+                        <div class="timeline-status">
+                            <span class="badge success">Completed</span>
+                            <div class="timeline-actions">
+                                <button class="btn-sm secondary" onclick="viewDonationCertificate('DON-002')">
+                                    <i class="fas fa-certificate"></i>
+                                    Certificate
+                                </button>
+                                <button class="btn-sm primary" onclick="viewImpactStory('DON-002')">
+                                    <i class="fas fa-heart"></i>
+                                    Impact Story
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker success">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Regular Donation</h4>
+                            <p><strong>Community Health Center</strong></p>
+                            <p>Routine blood donation drive</p>
+                            <div class="donation-details">
+                                <span class="detail-badge">Community Drive</span>
+                                <span class="detail-badge">Bonus Points: +50</span>
+                            </div>
+                            <span class="timeline-date">June 10, 2024</span>
+                        </div>
+                        <div class="timeline-status">
+                            <span class="badge success">Completed</span>
+                            <div class="timeline-actions">
+                                <button class="btn-sm secondary" onclick="viewDonationCertificate('DON-003')">
+                                    <i class="fas fa-certificate"></i>
+                                    Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker cancelled">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Scheduled Donation</h4>
+                            <p><strong>Regional Medical Center</strong></p>
+                            <p>Cancelled due to low hemoglobin levels</p>
+                            <div class="donation-details">
+                                <span class="detail-badge cancelled">Cancelled</span>
+                                <span class="detail-badge">Hemoglobin: 11.8 g/dL</span>
+                            </div>
+                            <span class="timeline-date">May 5, 2024</span>
+                        </div>
+                        <div class="timeline-status">
+                            <span class="badge danger">Cancelled</span>
+                            <div class="timeline-actions">
+                                <button class="btn-sm info" onclick="viewHealthTips()">
+                                    <i class="fas fa-info-circle"></i>
+                                    Health Tips
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Tracking -->
+            <div class="impact-tracking-card">
+                <div class="card-header">
+                    <h3>Your Impact</h3>
+                    <span class="badge primary">Lives Saved: 36</span>
+                </div>
+                <div class="impact-content">
+                    <div class="impact-stats">
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="impact-details">
+                                <h4>Emergency Saves</h4>
+                                <p class="impact-number">8</p>
+                                <p class="impact-description">Critical patients helped</p>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-baby"></i>
+                            </div>
+                            <div class="impact-details">
+                                <h4>Newborn Support</h4>
+                                <p class="impact-number">12</p>
+                                <p class="impact-description">Babies received your blood</p>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="impact-details">
+                                <h4>Surgery Support</h4>
+                                <p class="impact-number">16</p>
+                                <p class="impact-description">Surgeries made possible</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-stories">
+                        <h4>Recent Impact Stories</h4>
+                        <div class="story-item">
+                            <div class="story-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <div class="story-content">
+                                <p>"Thanks to your O+ donation, my daughter's surgery was successful. We are forever grateful."</p>
+                                <span class="story-author">- Sarah M., grateful mother</span>
+                            </div>
+                        </div>
+                        <div class="story-item">
+                            <div class="story-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <div class="story-content">
+                                <p>"Your emergency donation helped save three lives in our recent accident case."</p>
+                                <span class="story-author">- Dr. Johnson, Emergency Physician</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="achievements-card">
+                <div class="card-header">
+                    <h3>Achievements & Milestones</h3>
+                    <div class="achievement-progress">
+                        <span>Level: Gold Donor</span>
+                        <div class="level-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 48%"></div>
+                            </div>
+                            <span class="progress-text">12/25 to Platinum</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievements-grid">
+                    <div class="achievement-item earned">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h4>First Donation</h4>
+                        <p>Completed your first blood donation</p>
+                        <div class="achievement-date">Earned: Jan 15, 2023</div>
+                    </div>
+                    <div class="achievement-item earned">
+                        <div class="achievement-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Life Saver</h4>
+                        <p>Saved 10+ lives through donations</p>
+                        <div class="achievement-date">Earned: Jun 20, 2023</div>
+                    </div>
+                    <div class="achievement-item earned">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Gold Donor</h4>
+                        <p>Completed 10+ donations</p>
+                        <div class="achievement-date">Earned: Oct 20, 2024</div>
+                    </div>
+                    <div class="achievement-item earned">
+                        <div class="achievement-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Emergency Hero</h4>
+                        <p>Responded to 5+ emergency calls</p>
+                        <div class="achievement-date">Earned: Aug 15, 2024</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4>Platinum Donor</h4>
+                        <p>Complete 25 donations</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 48%"></div>
+                        </div>
+                        <span class="progress-text">12/25</span>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4>Diamond Donor</h4>
+                        <p>Complete 50 donations</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 24%"></div>
+                        </div>
+                        <span class="progress-text">12/50</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/donor-dashboard.js"></script>
+    <script>
+        // Initialize dashboard authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!protectDashboard('donor')) {
+                return; // Will redirect if not authenticated
+            }
+            initializeDashboardUser();
+        });
+    </script>
+</body>
+</html>

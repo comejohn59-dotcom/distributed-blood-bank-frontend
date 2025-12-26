@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - BloodConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+                <a href="../become-donor.html" class="nav-link">Become a Donor</a>
+                <a href="../request-blood.html" class="nav-link">Request Blood</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-content">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-logo">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h1>Join BloodConnect</h1>
+                    <p>Create your account and start saving lives</p>
+                </div>
+
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Account</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Personal</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Role</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Account Information -->
+                <form class="auth-form step-form active" id="step1Form" data-step="1">
+                    <h3>Account Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Enter first name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Create password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill"></div>
+                                </div>
+                                <div class="strength-text">Password strength</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password *</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="nextStep(2)">
+                        Continue
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <!-- Step 2: Personal Information -->
+                <form class="auth-form step-form" id="step2Form" data-step="2">
+                    <h3>Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth *</label>
+                            <div class="input-group">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <div class="input-group">
+                                <i class="fas fa-venus-mars"></i>
+                                <select id="gender" name="gender" class="form-control" required>
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bloodType">Blood Type</label>
+                            <div class="input-group">
+                                <i class="fas fa-tint"></i>
+                                <select id="bloodType" name="bloodType" class="form-control">
+                                    <option value="">Select blood type (if known)</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="unknown">Don't know</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <div class="input-group">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <textarea id="address" name="address" class="form-control" rows="3" placeholder="Enter your full address" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyContact">Emergency Contact *</label>
+                        <div class="input-group">
+                            <i class="fas fa-user-friends"></i>
+                            <input type="text" id="emergencyContact" name="emergencyContact" class="form-control" placeholder="Name and phone number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+                            Continue
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Step 3: Role Selection -->
+                <form class="auth-form step-form" id="step3Form" data-step="3">
+                    <h3>How will you use BloodConnect?</h3>
+                    <p class="step-description">Select your primary role (you can change this later)</p>
+                    
+                    <div class="role-selection">
+                        <div class="role-option" data-role="donor">
+                            <div class="role-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="role-content">
+                                <h4>Blood Donor</h4>
+                                <p>I want to donate blood and help save lives</p>
+                                <ul>
+                                    <li>Schedule donations</li>
+                                    <li>Track donation history</li>
+                                    <li>Receive emergency requests</li>
+                                    <li>Earn achievement badges</li>
+                                </ul>
+                            </div>
+                            <div class="role-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="role-option" data-role="patient">
+                            <div class="role-icon">
+                                <i class="fas fa-user-injured"></i>
+                            </div>
+                            <div class="role-content">
+                                <h4>Patient/Requester</h4>
+                                <p>I need blood for medical treatment</p>
+                                <ul>
+                                    <li>Request blood transfusions</li>
+                                    <li>Track request status</li>
+                                    <li>Find nearby hospitals</li>
+                                    <li>Emergency blood requests</li>
+                                </ul>
+                            </div>
+                            <div class="role-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="role-option" data-role="hospital">
+                            <div class="role-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="role-content">
+                                <h4>Hospital/Blood Bank</h4>
+                                <p>I represent a medical institution</p>
+                                <ul>
+                                    <li>Manage blood inventory</li>
+                                    <li>Process blood requests</li>
+                                    <li>Coordinate with donors</li>
+                                    <li>Emergency notifications</li>
+                                </ul>
+                            </div>
+                            <div class="role-check">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter">
+                            <span class="checkmark"></span>
+                            Subscribe to newsletters and blood drive notifications
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus"></i>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Sign in here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Background -->
+        <div class="auth-background">
+            <div class="auth-bg-overlay"></div>
+            <div class="auth-bg-content">
+                <h2>Join Our Community</h2>
+                <p>Be part of a network that saves lives every day</p>
+                <div class="auth-features">
+                    <div class="auth-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Private</span>
+                    </div>
+                    <div class="auth-feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile Friendly</span>
+                    </div>
+                    <div class="auth-feature">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

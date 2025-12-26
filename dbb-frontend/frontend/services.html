@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - BloodConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="become-donor.html" class="nav-link">Become a Donor</a>
+                <a href="request-blood.html" class="nav-link">Request Blood</a>
+                <a href="auth/login.html" class="nav-link">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section services-hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>Our Services</h1>
+                <p class="hero-subtitle">Comprehensive blood donation and management services</p>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Blood Donation Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Blood Donation</h3>
+                    <p>Safe and convenient blood donation process with trained medical professionals.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Health screening</li>
+                        <li><i class="fas fa-check"></i> Safe donation process</li>
+                        <li><i class="fas fa-check"></i> Post-donation care</li>
+                        <li><i class="fas fa-check"></i> Donation certificates</li>
+                    </ul>
+                    <a href="become-donor.html" class="btn btn-primary">
+                        <i class="fas fa-heart"></i>
+                        Become a Donor
+                    </a>
+                </div>
+
+                <!-- Blood Request Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <h3>Blood Request</h3>
+                    <p>Quick and efficient blood request system for patients and hospitals.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Emergency requests</li>
+                        <li><i class="fas fa-check"></i> Scheduled requests</li>
+                        <li><i class="fas fa-check"></i> Real-time tracking</li>
+                        <li><i class="fas fa-check"></i> 24/7 support</li>
+                    </ul>
+                    <a href="request-blood.html" class="btn btn-primary">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        Request Blood
+                    </a>
+                </div>
+
+                <!-- Hospital Management -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Hospital Management</h3>
+                    <p>Complete blood inventory and request management system for hospitals.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Inventory tracking</li>
+                        <li><i class="fas fa-check"></i> Request management</li>
+                        <li><i class="fas fa-check"></i> Inter-hospital transfers</li>
+                        <li><i class="fas fa-check"></i> Analytics dashboard</li>
+                    </ul>
+                    <a href="auth/register-hospital.html" class="btn btn-primary">
+                        <i class="fas fa-hospital"></i>
+                        Register Hospital
+                    </a>
+                </div>
+
+                <!-- Emergency Services -->
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>Emergency Services</h3>
+                    <p>24/7 emergency blood supply with rapid response team.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 24/7 availability</li>
+                        <li><i class="fas fa-check"></i> Rapid response</li>
+                        <li><i class="fas fa-check"></i> Emergency hotline</li>
+                        <li><i class="fas fa-check"></i> Priority processing</li>
+                    </ul>
+                    <a href="tel:1-800-BLOOD-911" class="btn btn-emergency">
+                        <i class="fas fa-phone"></i>
+                        Emergency: 1-800-BLOOD-911
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Our Services Work</h2>
+                <p>Simple, efficient, and life-saving processes</p>
+            </div>
+            
+            <div class="process-tabs">
+                <button class="process-tab active" onclick="showProcess('donation')">
+                    <i class="fas fa-heart"></i>
+                    Donation Process
+                </button>
+                <button class="process-tab" onclick="showProcess('request')">
+                    <i class="fas fa-hand-holding-medical"></i>
+                    Request Process
+                </button>
+                <button class="process-tab" onclick="showProcess('emergency')">
+                    <i class="fas fa-ambulance"></i>
+                    Emergency Process
+                </button>
+            </div>
+
+            <div class="process-content">
+                <div id="donation-process" class="process-steps active">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Registration</h4>
+                        <p>Sign up and complete health screening</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Eligibility Check</h4>
+                        <p>Verify donation eligibility and health status</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Donation</h4>
+                        <p>Safe blood donation with medical supervision</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Recovery</h4>
+                        <p>Post-donation care and refreshments</p>
+                    </div>
+                </div>
+
+                <div id="request-process" class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Submit Request</h4>
+                        <p>Fill out blood request form with medical details</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Verification</h4>
+                        <p>Medical team verifies request authenticity</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Matching</h4>
+                        <p>System matches with available donors/blood banks</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Fulfillment</h4>
+                        <p>Blood delivered to hospital or treatment center</p>
+                    </div>
+                </div>
+
+                <div id="emergency-process" class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Emergency Call</h4>
+                        <p>Call 1-800-BLOOD-911 for immediate assistance</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Rapid Assessment</h4>
+                        <p>Quick evaluation of blood type and quantity needed</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Emergency Response</h4>
+                        <p>Immediate mobilization of available resources</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Delivery</h4>
+                        <p>Emergency blood delivery within 30 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Choose the service that's right for you</p>
+                <div class="cta-buttons">
+                    <a href="become-donor.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-heart"></i>
+                        Become a Donor
+                    </a>
+                    <a href="request-blood.html" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        Request Blood
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-tint"></i>
+                        <span>BloodConnect</span>
+                    </div>
+                    <p>Connecting lives through the gift of blood donation. Every drop counts, every donor matters.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="become-donor.html">Become a Donor</a></li>
+                        <li><a href="request-blood.html">Request Blood</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <div class="emergency-contact">
+                        <p><i class="fas fa-phone"></i> 1-800-BLOOD-911</p>
+                        <p><i class="fas fa-envelope"></i> emergency@bloodconnect.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BloodConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function showProcess(processType) {
+            // Hide all process steps
+            document.querySelectorAll('.process-steps').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.process-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected process
+            document.getElementById(processType + '-process').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

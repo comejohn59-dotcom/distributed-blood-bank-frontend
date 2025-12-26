@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Blood - BloodConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-tint"></i>
+                <span>BloodConnect</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="become-donor.html" class="nav-link">Become a Donor</a>
+                <a href="request-blood.html" class="nav-link active">Request Blood</a>
+                <a href="auth/login.html" class="nav-link">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Ultra Compact -->
+    <section class="hero-compact">
+        <div class="container">
+            <div class="hero-horizontal">
+                <div class="hero-text">
+                    <h1>Request Blood</h1>
+                    <p>Get blood when you need it most. Fast, reliable, 24/7 available.</p>
+                    <div class="hero-actions-inline">
+                        <a href="tel:1-800-BLOOD-911" class="btn btn-emergency">
+                            <i class="fas fa-phone"></i> Emergency
+                        </a>
+                        <button class="btn btn-outline-light" onclick="scrollToAvailability()">
+                            <i class="fas fa-search"></i> Check
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-stats-inline">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Min Response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Safe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Options & Availability - Ultra Compact Side by Side -->
+    <section class="main-content-horizontal">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Request Options -->
+                <div class="content-section">
+                    <h2>Request Options</h2>
+                    <div class="request-options-compact">
+                        <div class="request-option-mini" onclick="showRequestForm('emergency')">
+                            <div class="option-icon emergency">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>Emergency</h3>
+                                <p>Immediate blood needed</p>
+                            </div>
+                        </div>
+
+                        <div class="request-option-mini" onclick="showRequestForm('scheduled')">
+                            <div class="option-icon scheduled">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>Scheduled</h3>
+                                <p>Plan ahead for procedures</p>
+                            </div>
+                        </div>
+
+                        <div class="request-option-mini" onclick="showRequestForm('ongoing')">
+                            <div class="option-icon ongoing">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>Ongoing</h3>
+                                <p>Regular treatment needs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blood Availability Checker -->
+                <div class="content-section" id="availability">
+                    <h2>Check Availability</h2>
+                    <div class="availability-checker-mini">
+                        <div class="checker-form-mini">
+                            <div class="form-row-mini">
+                                <select class="form-control-mini" id="checkBloodType">
+                                    <option value="">Blood Type</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                                <input type="text" class="form-control-mini" id="checkLocation" placeholder="Location">
+                                <button class="btn btn-primary btn-mini" onclick="checkAvailability()">
+                                    <i class="fas fa-search"></i> Check
+                                </button>
+                            </div>
+                        </div>
+                        <div class="availability-results-mini" id="availabilityResults">
+                            <div class="results-placeholder">
+                                <i class="fas fa-tint"></i>
+                                <p>Enter details to check availability</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process & Requirements - Ultra Compact -->
+    <section class="process-requirements-horizontal">
+        <div class="container">
+            <div class="content-grid">
+                <!-- How It Works -->
+                <div class="content-section">
+                    <h2>Process</h2>
+                    <div class="process-steps-mini">
+                        <div class="process-step-mini">
+                            <div class="step-number-mini">1</div>
+                            <div class="step-content-mini">
+                                <h4>Submit</h4>
+                                <p>Fill request form</p>
+                            </div>
+                        </div>
+                        <div class="process-step-mini">
+                            <div class="step-number-mini">2</div>
+                            <div class="step-content-mini">
+                                <h4>Verify</h4>
+                                <p>Medical review</p>
+                            </div>
+                        </div>
+                        <div class="process-step-mini">
+                            <div class="step-number-mini">3</div>
+                            <div class="step-content-mini">
+                                <h4>Match</h4>
+                                <p>Find donors</p>
+                            </div>
+                        </div>
+                        <div class="process-step-mini">
+                            <div class="step-number-mini">4</div>
+                            <div class="step-content-mini">
+                                <h4>Deliver</h4>
+                                <p>Blood delivered</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements -->
+                <div class="content-section">
+                    <h2>Requirements</h2>
+                    <div class="requirements-mini">
+                        <div class="requirement-item">
+                            <i class="fas fa-user-md"></i>
+                            <div>
+                                <h4>Medical</h4>
+                                <p>Doctor's prescription, blood type, units needed</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-hospital"></i>
+                            <div>
+                                <h4>Hospital</h4>
+                                <p>Hospital details, physician info</p>
+                            </div>
+                        </div>
+                        <div class="requirement-item">
+                            <i class="fas fa-id-card"></i>
+                            <div>
+                                <h4>Patient</h4>
+                                <p>Patient info, contact details</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-mini">
+                        <div class="help-contact">
+                            <i class="fas fa-phone"></i>
+                            <span>1-800-BLOOD-911</span>
+                        </div>
+                        <div class="help-contact">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@bloodconnect.org</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospital Selection Modal -->
+    <div class="modal-overlay" id="hospitalSelectionModal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Select Hospital for Blood Request</h3>
+                <button class="modal-close" onclick="closeHospitalSelectionModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="hospital-selection-content">
+                    <div class="selection-header">
+                        <h4>Available Hospitals with <span id="selectedBloodType">A+</span> Blood</h4>
+                        <p>Only ACTIVE and VERIFIED hospitals with sufficient stock are shown</p>
+                    </div>
+                    <div class="hospitals-list" id="hospitalsList">
+                        <!-- Hospitals will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blood Request Form Modal -->
+    <div class="modal-overlay" id="requestModal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="requestModalTitle">Blood Request Form</h3>
+                <button class="modal-close" onclick="closeRequestModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="request-form" id="bloodRequestForm">
+                    <!-- Form content will be dynamically populated -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-tint"></i>
+                        <span>BloodConnect</span>
+                    </div>
+                    <p>Connecting lives through the gift of blood donation. Every drop counts, every donor matters.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="become-donor.html">Become a Donor</a></li>
+                        <li><a href="request-blood.html">Request Blood</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <div class="emergency-contact">
+                        <p><i class="fas fa-phone"></i> 1-800-BLOOD-911</p>
+                        <p><i class="fas fa-envelope"></i> emergency@bloodconnect.org</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BloodConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/request-blood.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
